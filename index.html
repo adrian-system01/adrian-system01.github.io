@@ -89,10 +89,7 @@
     flex-wrap: wrap;
   }
 
-  .intro {
-    max-width: 340px;
-    flex: 1 1 280px;
-  }
+  .intro { max-width: 340px; flex: 1 1 280px; }
 
   .eyebrow {
     font-family: 'JetBrains Mono', monospace;
@@ -105,93 +102,42 @@
     align-items: center;
     gap: 8px;
   }
+  .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--primary); border-radius: 2px; }
 
-  .eyebrow::before {
-    content: "";
-    width: 18px;
-    height: 2px;
-    background: var(--primary);
-    border-radius: 2px;
-  }
-
-  .intro h1 {
-    font-family: 'Fredoka', sans-serif;
-    font-size: clamp(32px, 5vw, 44px);
-    line-height: 1.05;
-    margin: 14px 0 12px;
-  }
-
+  .intro h1 { font-family: 'Fredoka', sans-serif; font-size: clamp(32px, 5vw, 44px); line-height: 1.05; margin: 14px 0 12px; }
   .intro h1 span { color: var(--primary); }
   .intro p { font-size: 15px; line-height: 1.65; color: var(--muted); margin: 0 0 20px; }
   .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 6px 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
   }
 
   .phone {
-    width: 380px;
-    height: 800px;
-    padding: 14px;
-    border-radius: 46px;
-    background: #152936;
-    position: relative;
-    box-shadow: var(--shadow);
+    width: 380px; height: 800px; padding: 14px; border-radius: 46px; background: #152936;
+    position: relative; box-shadow: var(--shadow);
   }
-
   .phone::before {
-    content: "";
-    position: absolute;
-    top: 14px; left: 50%; transform: translateX(-50%);
-    width: 110px; height: 22px;
-    background: #152936;
-    border-radius: 0 0 16px 16px;
-    z-index: 5;
+    content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 22px; background: #152936; border-radius: 0 0 16px 16px; z-index: 5;
   }
 
   .screen {
-    width: 100%; height: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 32px;
-    background: var(--screen);
-    display: flex;
-    flex-direction: column;
+    width: 100%; height: 100%; position: relative; overflow: hidden; border-radius: 32px;
+    background: var(--screen); display: flex; flex-direction: column;
   }
 
-  .app-view {
-    display: none;
-    flex: 1;
-    flex-direction: column;
-    gap: 16px;
-    padding: 44px 20px 18px;
-    overflow-y: auto;
-  }
-
-  .app-view.active { display: flex; }
+  .app-view { display: none; flex: 1; flex-direction: column; gap: 16px; padding: 44px 20px 18px; overflow-y: auto; }
+  .app-view.active { display: flex; animation: viewIn 0.3s ease; }
   .app-view::-webkit-scrollbar { width: 0; }
+  @keyframes viewIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-  .brand-row {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 2px;
-  }
-
+  .brand-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
   .brand-mark {
-    width: 26px; height: 26px;
-    border-radius: 8px;
-    background: var(--primary);
-    display: flex; align-items: center; justify-content: center;
-    color: white;
-    font-family: 'Fredoka', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    width: 26px; height: 26px; border-radius: 8px; background: var(--primary);
+    display: flex; align-items: center; justify-content: center; color: white;
+    font-family: 'Fredoka', sans-serif; font-size: 14px; font-weight: 700;
   }
-
   .brand-name { font-family: 'Fredoka', sans-serif; font-size: 15px; font-weight: 600; }
   .screen-title { font-family: 'Fredoka', sans-serif; font-size: 22px; margin: 0; }
   .screen-sub { color: var(--muted); font-size: 12.5px; line-height: 1.5; margin: 2px 0 4px; }
@@ -199,85 +145,44 @@
   button { font: inherit; cursor: pointer; }
 
   .btn-primary {
-    width: 100%;
-    border: none;
-    border-radius: 14px;
-    color: white;
+    width: 100%; border: none; border-radius: 14px; color: white;
     background: linear-gradient(135deg, var(--primary), var(--accent));
-    padding: 14px 18px;
-    font-weight: 700;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    padding: 14px 18px; font-weight: 700; box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     transition: transform 0.15s ease;
   }
-
   .btn-primary:hover { transform: translateY(-1px); }
-  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: none; }
   .btn-secondary {
-    width: 100%;
-    background: transparent;
-    border: 1.5px solid var(--line);
-    border-radius: 14px;
-    color: var(--ink);
-    font-weight: 600;
-    padding: 12px 16px;
+    width: 100%; background: transparent; border: 1.5px solid var(--line); border-radius: 14px;
+    color: var(--ink); font-weight: 600; padding: 12px 16px;
   }
 
   .field { display: flex; flex-direction: column; gap: 6px; }
-  .field label {
-    font-size: 11.5px; line-height: 1.3; letter-spacing: 0.06em;
-    text-transform: uppercase; font-weight: 700; color: var(--muted);
-  }
+  .field label { font-size: 11.5px; line-height: 1.3; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
   .field input, .field select {
-    border: 1.5px solid var(--line);
-    background: var(--card);
-    border-radius: 12px;
-    padding: 12px 14px;
-    color: var(--ink);
-    font-size: 15px;
+    border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 12px 14px;
+    color: var(--ink); font-size: 15px;
   }
   .field input:focus, .field select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
 
-  .pet-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 10px;
-  }
-
+  .pet-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
   .pet-card {
-    border: 2px solid var(--line);
-    border-radius: 18px;
-    background: var(--card);
-    padding: 12px 8px 10px;
-    text-align: center;
-    color: var(--ink);
-    transition: all 0.2s ease;
+    border: 2px solid var(--line); border-radius: 18px; background: var(--card);
+    padding: 12px 8px 10px; text-align: center; color: var(--ink); transition: all 0.2s ease;
   }
-
-  .pet-card.selected {
-    border-color: var(--primary);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-  }
-
+  .pet-card.selected { border-color: var(--primary); box-shadow: 0 8px 18px rgba(0,0,0,0.05); transform: translateY(-2px); }
   .pet-card .mini-sprite { width: 64px; height: 64px; margin: 0 auto 8px; }
   .pet-card strong { display: block; font-size: 12px; }
   .pet-card small { color: var(--muted); font-size: 11px; }
 
   .switch-row {
-    display: flex; align-items: center; justify-content: space-between;
-    border: 1.5px solid var(--line);
-    border-radius: 14px;
-    background: var(--card);
-    padding: 12px 14px;
+    display: flex; align-items: center; justify-content: space-between; border: 1.5px solid var(--line);
+    border-radius: 14px; background: var(--card); padding: 12px 14px;
   }
   .switch-row span { font-size: 13.5px; font-weight: 500; }
-  .toggle {
-    width: 42px; height: 24px; border: none; border-radius: 999px; background: rgba(0,0,0,0.12); position: relative;
-    transition: background 0.2s ease;
-  }
+  .toggle { width: 42px; height: 24px; border: none; border-radius: 999px; background: rgba(0,0,0,0.12); position: relative; transition: background 0.2s ease; }
   .toggle::after {
-    content: "";
-    position: absolute; top: 3px; left: 3px;
-    width: 18px; height: 18px; border-radius: 50%;
+    content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%;
     background: white; transition: transform 0.2s ease;
   }
   .toggle.on { background: var(--highlight); }
@@ -285,18 +190,9 @@
 
   .mini-hero { width: 104px; height: 104px; margin: 4px auto 6px; }
 
-  .streak-card {
-    border-radius: 22px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    padding: 18px 18px 16px;
-    overflow: hidden;
-  }
-
+  .streak-card { border-radius: 22px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 18px 18px 16px; overflow: hidden; }
   .streak-card .flame { font-size: 26px; }
-  .streak-card .streak-num {
-    font-family: 'Fredoka', sans-serif; font-size: 38px; font-weight: 600; margin-top: 2px;
-  }
+  .streak-card .streak-num { font-family: 'Fredoka', sans-serif; font-size: 38px; font-weight: 600; margin-top: 2px; }
   .streak-card .streak-label { font-size: 12px; opacity: 0.9; }
   .week-row { display: flex; justify-content: space-between; margin-top: 14px; }
   .day-pip {
@@ -310,41 +206,24 @@
 
   .owl-stage { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .owl-wrap { width: 132px; height: 132px; }
-  .speech {
-    max-width: 220px; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px;
-    padding: 8px 12px; font-size: 12.5px; font-weight: 500; text-align: center;
-  }
+  .speech { max-width: 240px; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 8px 12px; font-size: 12.5px; font-weight: 500; text-align: center; }
 
   .task-list { display: flex; flex-direction: column; gap: 10px; }
-  .task {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--line);
-    border-radius: 16px; background: var(--card); text-align: left;
-  }
+  .task { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 16px; background: var(--card); text-align: left; transition: all 0.2s ease; }
   .task.done { border-color: var(--highlight); background: rgba(123,200,164,0.12); }
-  .task .check {
-    width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line);
-    display: flex; align-items: center; justify-content: center; font-size: 13px; color: white;
-  }
-  .task.done .check { background: var(--highlight); border-color: var(--highlight); }
+  .task .check { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 13px; color: white; transition: all 0.2s ease; }
+  .task.done .check { background: var(--highlight); border-color: var(--highlight); transform: scale(1.1); }
   .task .txt { flex: 1; }
   .task .txt strong { display: block; font-size: 13.5px; }
   .task .txt small { display: block; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
 
   .cal-nav { display: flex; align-items: center; justify-content: space-between; }
-  .icon-btn {
-    width: 32px; height: 32px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card);
-    color: var(--ink); display: flex; align-items: center; justify-content: center;
-  }
+  .icon-btn { width: 32px; height: 32px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); display: flex; align-items: center; justify-content: center; }
   .cal-month { font-family: 'Fredoka', sans-serif; font-size: 15px; font-weight: 600; text-transform: capitalize; }
   .cal-weekday-row { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; text-align: center; }
-  .cal-weekday-row span {
-    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; color: var(--muted);
-  }
+  .cal-weekday-row span { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; color: var(--muted); }
   .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
-  .cal-cell {
-    aspect-ratio: 1; border-radius: 9px; background: transparent; border: 1.5px solid transparent; color: var(--muted);
-    display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600;
-  }
+  .cal-cell { aspect-ratio: 1; border-radius: 9px; background: transparent; border: 1.5px solid transparent; color: var(--muted); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600; }
   .cal-cell.blank { visibility: hidden; }
   .cal-cell.full { background: var(--primary); color: white; }
   .cal-cell.partial { background: var(--secondary); color: var(--ink); }
@@ -369,7 +248,7 @@
   .bar-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
   .bar-row .lab { width: 74px; font-size: 11px; color: var(--muted); }
   .bar-track { flex: 1; height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 999px; }
+  .bar-fill { height: 100%; border-radius: 999px; transition: width 0.6s ease; }
   .bar-fill.v { background: var(--highlight); }
   .bar-fill.e { background: var(--primary); }
   .bar-pct { width: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; }
@@ -379,38 +258,22 @@
 
   .badge-row { display: flex; justify-content: space-between; gap: 6px; }
   .badge { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-  .badge .ic {
-    width: 44px; height: 44px; border-radius: 50%; background: var(--line); filter: grayscale(1); opacity: 0.4;
-    display: flex; align-items: center; justify-content: center; font-size: 19px;
-  }
+  .badge .ic { width: 44px; height: 44px; border-radius: 50%; background: var(--line); filter: grayscale(1); opacity: 0.4; display: flex; align-items: center; justify-content: center; font-size: 19px; }
   .badge.earned .ic { background: var(--secondary); filter: none; opacity: 1; }
   .badge span { font-size: 9.5px; text-align: center; color: var(--muted); }
 
-  .prod-card { display: flex; gap: 12px; align-items: flex-start; }
-  .prod-icon { width: 52px; height: 52px; flex-shrink: 0; }
-  .prod-info h3 { font-family: 'Fredoka', sans-serif; font-size: 15px; margin: 0 0 2px; }
-  .prod-info p { margin: 0 0 6px; font-size: 12px; color: var(--muted); line-height: 1.45; }
-  .prod-meta { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    display: inline-flex; align-items: center; border-radius: 999px; font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 700; padding: 3px 8px; background: rgba(123,200,164,0.14); color: var(--highlight);
-  }
+  .chip { display: inline-flex; align-items: center; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 3px 8px; background: rgba(123,200,164,0.14); color: var(--highlight); }
   .chip.reco { background: rgba(255,209,102,0.2); color: var(--ink); }
 
   .progress-track { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--highlight); border-radius: 999px; }
+  .progress-fill { height: 100%; background: var(--highlight); border-radius: 999px; transition: width 0.6s ease; }
   .stat-row { display: flex; gap: 10px; }
   .stat-box { flex: 1; text-align: center; padding: 10px 6px; }
   .stat-box b { display: block; font-family: 'Fredoka', sans-serif; font-size: 20px; }
   .stat-box span { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
   /* ===== TIENDA ===== */
-  .store-stats {
-    display: flex; gap: 8px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 20px; padding: 14px 10px;
-    box-shadow: 0 10px 22px rgba(0,0,0,0.16);
-  }
+  .store-stats { display: flex; gap: 8px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 20px; padding: 14px 10px; box-shadow: 0 10px 22px rgba(0,0,0,0.16); }
   .store-stat { flex: 1; text-align: center; color: white; }
   .store-stat b { display: block; font-family: 'Fredoka', sans-serif; font-size: 19px; }
   .store-stat span { font-size: 9.5px; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -418,72 +281,24 @@
   .store-stat .stars-fg { color: #ffd166; }
   .store-stat-divider { width: 1px; background: rgba(255,255,255,0.25); }
 
-  .store-tabs {
-    display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px;
-  }
+  .store-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
   .store-tabs::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    flex-shrink: 0;
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--muted);
-    border-radius: 999px;
-    padding: 7px 13px;
-    font-size: 11.5px;
-    font-weight: 700;
-    transition: all 0.2s ease;
-  }
-  .tab-btn.active {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    border-color: transparent;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
-  }
+  .tab-btn { flex-shrink: 0; border: 1px solid var(--line); background: var(--card); color: var(--muted); border-radius: 999px; padding: 7px 13px; font-size: 11.5px; font-weight: 700; transition: all 0.2s ease; }
+  .tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border-color: transparent; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.18); }
 
   .store-grid { display: flex; flex-direction: column; gap: 12px; }
-
-  .store-card {
-    opacity: 0;
-    animation: cardPop 0.5s ease forwards;
-    position: relative;
-    overflow: hidden;
-  }
-  .store-card::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 100% 0%, rgba(255,209,102,0.16), transparent 55%);
-    pointer-events: none;
-  }
-  @keyframes cardPop {
-    from { opacity: 0; transform: translateY(16px) scale(0.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
+  .store-card { opacity: 0; animation: cardPop 0.5s ease forwards; position: relative; overflow: hidden; }
+  .store-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 100% 0%, rgba(255,209,102,0.16), transparent 55%); pointer-events: none; }
+  .store-card.is-reco { border-color: var(--primary); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+  @keyframes cardPop { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
   .store-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
-  .store-icon {
-    width: 46px; height: 46px; border-radius: 14px;
-    background: var(--secondary);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
+  .store-icon { width: 46px; height: 46px; border-radius: 14px; background: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
   .store-badges { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
-  .s-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; font-weight: 700;
-    padding: 3px 8px; border-radius: 999px;
-    white-space: nowrap;
-  }
+  .s-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
   .s-badge.best { background: rgba(226,87,43,0.14); color: #E2572B; }
-  .s-badge.reco {
-    background: rgba(255,209,102,0.25); color: var(--ink);
-    animation: glowPulse 1.8s ease-in-out infinite;
-  }
-  @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 0 rgba(255,209,102,0); }
-    50% { box-shadow: 0 0 8px rgba(255,209,102,0.7); }
-  }
+  .s-badge.reco { background: rgba(255,209,102,0.25); color: var(--ink); animation: glowPulse 1.8s ease-in-out infinite; }
+  @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 0 rgba(255,209,102,0); } 50% { box-shadow: 0 0 8px rgba(255,209,102,0.7); } }
 
   .store-card h3 { font-family: 'Fredoka', sans-serif; font-size: 15px; margin: 4px 0 2px; }
   .store-desc { margin: 0 0 8px; font-size: 12px; color: var(--muted); line-height: 1.45; }
@@ -492,11 +307,7 @@
   .store-rating-row { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
   .stars { position: relative; display: inline-block; font-size: 13px; line-height: 1; letter-spacing: 1px; }
   .stars-bg { color: var(--line); }
-  .stars-fg {
-    position: absolute; top: 0; left: 0; overflow: hidden;
-    color: #ffb400; white-space: nowrap;
-    transition: width 1.1s cubic-bezier(.34,1.56,.64,1);
-  }
+  .stars-fg { position: absolute; top: 0; left: 0; overflow: hidden; color: #ffb400; white-space: nowrap; transition: width 1.1s cubic-bezier(.34,1.56,.64,1); }
   .rating-num { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 12.5px; }
   .rating-count { font-size: 11px; color: var(--muted); }
 
@@ -507,71 +318,29 @@
 
   .store-bottom { display: flex; align-items: center; justify-content: space-between; }
   .store-price { font-family: 'Fredoka', sans-serif; font-size: 16px; color: var(--accent); font-weight: 600; }
-  .btn-add {
-    border: none; border-radius: 12px; color: white;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    padding: 9px 16px; font-weight: 700; font-size: 12.5px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.14);
-    transition: transform 0.15s ease;
-    position: relative;
-  }
+  .btn-add { border: none; border-radius: 12px; color: white; background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 9px 16px; font-weight: 700; font-size: 12.5px; box-shadow: 0 6px 14px rgba(0,0,0,0.14); transition: transform 0.15s ease; position: relative; }
   .btn-add:active { transform: scale(0.94); }
   .btn-add.bump { animation: addBump 0.4s ease; }
-  @keyframes addBump {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.14); }
-    100% { transform: scale(1); }
-  }
+  @keyframes addBump { 0% { transform: scale(1); } 40% { transform: scale(1.14); } 100% { transform: scale(1); } }
 
-  .cart-pill {
-    display: flex; align-items: center; justify-content: space-between; gap: 6px;
-    width: 100%;
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 999px; padding: 9px 8px 9px 14px;
-    font-size: 11.5px; font-weight: 700; color: var(--ink);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
+  .cart-pill { display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 9px 8px 9px 14px; font-size: 11.5px; font-weight: 700; color: var(--ink); transition: transform 0.15s ease, box-shadow 0.15s ease; }
   .cart-pill:active { transform: scale(0.97); }
   .cart-pill:hover { box-shadow: 0 6px 14px rgba(0,0,0,0.1); }
-  .cart-pill span#cartCount {
-    display: inline-block; min-width: 16px; text-align: center;
-    color: var(--primary); font-family: 'JetBrains Mono', monospace;
-  }
+  .cart-pill span#cartCount { display: inline-block; min-width: 16px; text-align: center; color: var(--primary); font-family: 'JetBrains Mono', monospace; }
   .cart-pill span#cartCount.bump { animation: addBump 0.4s ease; }
-  .cart-pill-arrow {
-    font-size: 10.5px; color: white; background: linear-gradient(135deg, var(--primary), var(--accent));
-    padding: 6px 10px; border-radius: 999px;
-  }
+  .cart-pill-arrow { font-size: 10.5px; color: white; background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 6px 10px; border-radius: 999px; }
 
-  .sparkle-piece {
-    position: absolute; width: 6px; height: 6px; border-radius: 50%;
-    pointer-events: none; z-index: 6;
-    animation: sparkleFly 0.7s ease-out forwards;
-  }
-  @keyframes sparkleFly {
-    0% { opacity: 1; transform: translate(0,0) scale(1); }
-    100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0.3); }
-  }
+  .sparkle-piece { position: absolute; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 6; animation: sparkleFly 0.7s ease-out forwards; }
+  @keyframes sparkleFly { 0% { opacity: 1; transform: translate(0,0) scale(1); } 100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0.3); } }
 
   .btn-add.sold-out { background: var(--line); color: var(--muted); box-shadow: none; cursor: not-allowed; }
   .btn-add.sold-out:active { transform: none; }
   .stock-label.low { color: #E2572B; font-weight: 700; }
 
-  /* ===== CARRITO OVERLAY ===== */
-  .cart-overlay {
-    position: absolute; inset: 0; background: rgba(17,19,25,0.45);
-    display: none; align-items: flex-end; justify-content: center;
-    z-index: 41; border-radius: 32px; overflow: hidden;
-  }
+  /* ===== CARRITO ===== */
+  .cart-overlay { position: absolute; inset: 0; background: rgba(17,19,25,0.45); display: none; align-items: flex-end; justify-content: center; z-index: 41; border-radius: 32px; overflow: hidden; }
   .cart-overlay.show { display: flex; }
-  .cart-sheet {
-    width: 100%; max-height: 80%;
-    background: var(--card); border-radius: 24px 24px 0 0;
-    padding: 18px 18px 20px; display: flex; flex-direction: column;
-    transform: translateY(100%);
-    transition: transform 0.38s cubic-bezier(.22,.9,.32,1.05);
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.22);
-  }
+  .cart-sheet { width: 100%; max-height: 80%; background: var(--card); border-radius: 24px 24px 0 0; padding: 18px 18px 20px; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.38s cubic-bezier(.22,.9,.32,1.05); box-shadow: 0 -10px 30px rgba(0,0,0,0.22); }
   .cart-overlay.show .cart-sheet { transform: translateY(0); }
   .cart-sheet-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
   .cart-sheet-head h2 { font-family: 'Fredoka', sans-serif; font-size: 18px; margin: 0; }
@@ -584,11 +353,7 @@
   .cart-item .ci-info b { display: block; font-size: 12.5px; font-family: 'Fredoka', sans-serif; }
   .cart-item .ci-info span { font-size: 11px; color: var(--muted); }
   .qty-stepper { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
-  .qty-stepper button {
-    width: 24px; height: 24px; border-radius: 8px; border: 1px solid var(--line);
-    background: var(--screen); font-weight: 700; color: var(--ink); font-size: 13px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .qty-stepper button { width: 24px; height: 24px; border-radius: 8px; border: 1px solid var(--line); background: var(--screen); font-weight: 700; color: var(--ink); font-size: 13px; display: flex; align-items: center; justify-content: center; }
   .qty-stepper b { min-width: 16px; text-align: center; font-size: 12.5px; }
 
   .cart-empty { text-align: center; color: var(--muted); font-size: 12px; padding: 26px 10px; display: none; line-height: 1.6; }
@@ -597,20 +362,16 @@
   .cart-total-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 2px; border-top: 1px dashed var(--line); margin-top: 4px; }
   .cart-total-row span { font-size: 12.5px; color: var(--muted); }
   .cart-total-row b { font-family: 'Fredoka', sans-serif; font-size: 19px; color: var(--accent); }
+  .cart-clear { background: none; border: none; color: var(--muted); font-size: 11.5px; text-decoration: underline; margin: 0 auto 8px; display: block; }
 
-  /* ===== PERFIL: rating de la app ===== */
+  /* ===== PERFIL ===== */
   .app-rating-stars { display: flex; gap: 6px; justify-content: center; margin: 6px 0 10px; }
-  .app-rating-stars button {
-    background: none; border: none; font-size: 30px; line-height: 1;
-    color: var(--line); transition: transform 0.15s ease, color 0.15s ease;
-    padding: 0;
-  }
+  .app-rating-stars button { background: none; border: none; font-size: 30px; line-height: 1; color: var(--line); transition: transform 0.15s ease, color 0.15s ease; padding: 0; }
   .app-rating-stars button.filled { color: #ffb400; }
   .app-rating-stars button.pop { animation: starPop 0.4s ease; }
   @keyframes starPop { 0% { transform: scale(1); } 45% { transform: scale(1.4) rotate(-8deg); } 100% { transform: scale(1); } }
   .app-rating-msg { text-align: center; font-size: 12px; color: var(--muted); min-height: 16px; }
 
-  /* ===== PERFIL: cuerpo de estadísticas ===== */
   .stats-body { display: flex; align-items: center; gap: 16px; }
   .stats-ring-wrap { position: relative; width: 92px; height: 92px; flex-shrink: 0; }
   .stats-ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
@@ -625,7 +386,6 @@
   .stats-body-chip b { font-family: 'Fredoka', sans-serif; font-size: 13px; }
   .stats-body-chip span { color: var(--muted); font-size: 11px; }
 
-  /* ===== PERFIL: historial de compras ===== */
   .purchase-list { display: flex; flex-direction: column; gap: 10px; }
   .purchase-item { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
   .purchase-item-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
@@ -635,35 +395,21 @@
   .purchase-empty { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 6px; }
 
   .navbar { display: flex; justify-content: space-around; padding: 8px 2px 14px; background: var(--card); border-top: 1px solid var(--line); }
-  .nav-btn {
-    background: none; border: none; color: var(--muted); font-size: 9.5px; font-weight: 600;
-    display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px 5px; border-radius: 10px;
-  }
+  .nav-btn { background: none; border: none; color: var(--muted); font-size: 9.5px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px 5px; border-radius: 10px; }
   .nav-btn.active { color: var(--primary); }
   .nav-btn svg { width: 19px; height: 19px; }
 
-  .toast {
-    position: absolute; left: 16px; right: 16px; top: 52px; z-index: 20;
-    background: rgba(21,41,54,0.95); color: white; border-radius: 16px; padding: 12px 14px;
-    display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(-140%);
-    transition: all 0.35s ease; box-shadow: 0 10px 24px rgba(0,0,0,0.28);
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast { position: absolute; left: 16px; right: 16px; top: 52px; z-index: 20; background: rgba(21,41,54,0.95); color: white; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(-140%); transition: all 0.35s ease; box-shadow: 0 10px 24px rgba(0,0,0,0.28); pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .toast .ic { font-size: 20px; }
   .toast .msg { flex: 1; font-size: 12.5px; }
   .toast button { background: rgba(255,255,255,0.15); border: none; border-radius: 8px; color: white; width: 22px; height: 22px; }
 
-  .celebrate-overlay {
-    position: absolute; inset: 0; background: rgba(17,19,25,0.92); display: none; align-items: center; justify-content: center; flex-direction: column; text-align: center;
-    padding: 30px 26px; z-index: 40; border-radius: 32px; overflow: hidden;
-  }
+  .celebrate-overlay { position: absolute; inset: 0; background: rgba(17,19,25,0.92); display: none; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 30px 26px; z-index: 40; border-radius: 32px; overflow: hidden; color: white; }
   .celebrate-overlay.show { display: flex; }
   .celebrate-overlay h2 { font-family: 'Fredoka', sans-serif; font-size: 24px; margin: 14px 0 6px; }
   .celebrate-overlay p { font-size: 13px; opacity: 0.85; line-height: 1.5; margin: 0 0 18px; }
-  .badge-pill {
-    display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px;
-    background: var(--secondary); color: var(--ink); font-weight: 700; font-size: 12px;
-  }
+  .badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; background: var(--secondary); color: var(--ink); font-weight: 700; font-size: 12px; }
   .confetti-piece { position: absolute; top: -10px; width: 8px; height: 14px; opacity: 0.95; border-radius: 2px; pointer-events: none; }
 
   .owl-svg { width: 100%; height: 100%; }
@@ -692,12 +438,13 @@
     <div class="intro">
       <div class="eyebrow">Prototipo</div>
       <h1>Nutribit<span>.</span> salud con mascota.</h1>
-      <p>Elige tu animalito, ponle nombre, responde unas preguntas y empieza tu racha con hábitos sanos, bonitos y personalizados.</p>
+      <p>Elige tu animalito, ponle nombre, responde unas preguntas y empieza tu racha con hábitos sanos y galletas nutritivas hechas para ti.</p>
       <div class="tag-row">
         <span class="tag">Mascota</span>
         <span class="tag">Nombre</span>
         <span class="tag">Objetivos</span>
         <span class="tag">Racha</span>
+        <span class="tag">Galletas 🍪</span>
       </div>
     </div>
 
@@ -808,7 +555,7 @@
           <div class="task-list">
             <button class="task" id="taskVitamin">
               <span class="check" id="checkVitamin"></span>
-              <span class="txt"><strong>Tomé mi vitamina</strong><small>Chocoteja, gomita o galleta Nutribit</small></span>
+              <span class="txt"><strong>Comí mi galleta Nutribit 🍪</strong><small>Tu galleta vitamínica o chocoteja del día</small></span>
             </button>
             <button class="task" id="taskEat">
               <span class="check" id="checkEat"></span>
@@ -820,7 +567,7 @@
         <div class="app-view" id="screen-calendar">
           <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">Nutribit</div></div>
           <h1 class="screen-title">Calendario</h1>
-          <p class="screen-sub">Verde = vitamina + comida. Ámbar = solo uno. Gris = ninguno.</p>
+          <p class="screen-sub">Completo = galleta + comida. Parcial = solo uno. Gris = ninguno.</p>
 
           <div class="card">
             <div class="cal-nav">
@@ -858,7 +605,7 @@
           <div class="card">
             <h3 style="font-family:'Fredoka', sans-serif; font-size:14px; margin:0 0 4px;">Cumplimiento por hábito</h3>
             <div class="bar-row">
-              <span class="lab">Vitamina</span>
+              <span class="lab">Galleta 🍪</span>
               <div class="bar-track"><div class="bar-fill v" id="barVitamin" style="width:0%;"></div></div>
               <span class="bar-pct" id="pctVitamin">0%</span>
             </div>
@@ -884,7 +631,7 @@
         <div class="app-view" id="screen-products">
           <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">Nutribit</div></div>
           <h1 class="screen-title">Tienda</h1>
-          <p class="screen-sub">Comitas, barras energéticas y bebidas para tu racha.</p>
+          <p class="screen-sub">Galletas, chocotejas, barras y bebidas para tu racha.</p>
 
           <div class="store-stats">
             <div class="store-stat"><b id="statSales">0</b><span>Ventas</span></div>
@@ -908,7 +655,7 @@
 
           <div class="store-tabs" id="storeTabs">
             <button class="tab-btn active" data-cat="all">Todo</button>
-            <button class="tab-btn" data-cat="comitas">🍬 Comitas</button>
+            <button class="tab-btn" data-cat="galletas">🍪 Galletas</button>
             <button class="tab-btn" data-cat="barras">⚡ Barras</button>
             <button class="tab-btn" data-cat="bebidas">🧃 Bebidas</button>
           </div>
@@ -960,11 +707,11 @@
             <h3 style="font-family:'Fredoka', sans-serif; font-size:14px; margin:0 0 4px; text-align:center;">¿Cómo te está tratando Nutribit?</h3>
             <p class="screen-sub" style="text-align:center; margin-bottom:2px;">Danos tu calificación</p>
             <div class="app-rating-stars" id="appRatingStars">
-              <button data-val="1">★</button>
-              <button data-val="2">★</button>
-              <button data-val="3">★</button>
-              <button data-val="4">★</button>
-              <button data-val="5">★</button>
+              <button data-val="1" aria-label="1 estrella">★</button>
+              <button data-val="2" aria-label="2 estrellas">★</button>
+              <button data-val="3" aria-label="3 estrellas">★</button>
+              <button data-val="4" aria-label="4 estrellas">★</button>
+              <button data-val="5" aria-label="5 estrellas">★</button>
             </div>
             <p class="app-rating-msg" id="appRatingMsg"></p>
           </div>
@@ -972,7 +719,7 @@
           <div class="card">
             <h3 style="font-family:'Fredoka', sans-serif; font-size:14px; margin:0 0 10px;">Tus compras</h3>
             <div class="purchase-list" id="purchaseList"></div>
-            <p class="purchase-empty" id="purchaseEmpty">Aún no has comprado nada 🛍️<br>Visita la Tienda para empezar.</p>
+            <p class="purchase-empty" id="purchaseEmpty">Aún no has comprado nada 🍪<br>Visita la Tienda para empezar.</p>
           </div>
 
           <div class="card">
@@ -1003,13 +750,14 @@
           <div class="cart-sheet">
             <div class="cart-sheet-head">
               <h2>Tu carrito</h2>
-              <button class="cart-close" id="cartCloseBtn">✕</button>
+              <button class="cart-close" id="cartCloseBtn" aria-label="Cerrar carrito">✕</button>
             </div>
             <div class="cart-items" id="cartItems"></div>
             <div class="cart-empty" id="cartEmpty">
-              <div style="font-size:32px;">🛍️</div>
-              <p>Tu carrito está vacío.<br>Agrega comitas, barras o bebidas.</p>
+              <div style="font-size:32px;">🍪</div>
+              <p>Tu carrito está vacío.<br>Agrega galletas, barras o bebidas.</p>
             </div>
+            <button class="cart-clear" id="cartClearBtn">Vaciar carrito</button>
             <div class="cart-total-row">
               <span>Total</span>
               <b id="cartTotal">S/ 0.00</b>
@@ -1050,24 +798,11 @@
   const dayNamesShort = ['dom','lun','mar','mié','jue','vie','sáb'];
 
   const state = {
-    petType: 'owl',
-    petName: 'Ñuti',
-    userName: '',
-    weightInit: null,
-    weightGoal: null,
-    anemia: false,
-    baseToday: new Date(),
-    todayOffset: 0,
-    log: {},
-    goalReached: false,
-    remindersOn: true,
-    reminderTimer: null,
-    reminderStep: 0,
-    calDisplay: null,
-    cart: {},
-    cartToastTimer: null,
-    purchaseHistory: [],
-    appRating: 0
+    petType: 'owl', petName: 'Ñuti', userName: '',
+    weightInit: null, weightGoal: null, anemia: false,
+    baseToday: new Date(), todayOffset: 0, log: {},
+    goalReached: false, remindersOn: true, reminderTimer: null, reminderStep: 0,
+    calDisplay: null, cart: {}, cartToastTimer: null, purchaseHistory: [], appRating: 0
   };
 
   function stripTime(d){ const n = new Date(d); n.setHours(0,0,0,0); return n; }
@@ -1087,14 +822,8 @@
     if (type === 'penguin') {
       return `<svg class="owl-svg idle" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="penguinBody" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#234E72"/>
-            <stop offset="1" stop-color="#163650"/>
-          </linearGradient>
-          <linearGradient id="penguinBelly" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#F8FDFF"/>
-            <stop offset="1" stop-color="#CFEAFD"/>
-          </linearGradient>
+          <linearGradient id="penguinBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#234E72"/><stop offset="1" stop-color="#163650"/></linearGradient>
+          <linearGradient id="penguinBelly" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8FDFF"/><stop offset="1" stop-color="#CFEAFD"/></linearGradient>
         </defs>
         <ellipse cx="100" cy="181" rx="48" ry="7" fill="#B7D7E8" opacity=".35"/>
         <ellipse cx="100" cy="120" rx="61" ry="67" fill="url(#penguinBody)"/>
@@ -1118,12 +847,7 @@
 
     if (type === 'rabbit') {
       return `<svg class="owl-svg idle" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="rabbitFur" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#F9DDEA"/>
-            <stop offset="1" stop-color="#EFBFD8"/>
-          </linearGradient>
-        </defs>
+        <defs><linearGradient id="rabbitFur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9DDEA"/><stop offset="1" stop-color="#EFBFD8"/></linearGradient></defs>
         <ellipse cx="100" cy="181" rx="50" ry="7" fill="#B9D9B4" opacity=".35"/>
         <ellipse cx="69" cy="70" rx="20" ry="48" fill="url(#rabbitFur)"/>
         <ellipse cx="131" cy="70" rx="20" ry="48" fill="url(#rabbitFur)"/>
@@ -1187,8 +911,7 @@
   }
 
   function applyTheme(){
-    const theme = state.petType === 'penguin' ? 'penguin' : state.petType === 'rabbit' ? 'rabbit' : 'owl';
-    document.body.dataset.theme = theme;
+    document.body.dataset.theme = state.petType === 'penguin' ? 'penguin' : state.petType === 'rabbit' ? 'rabbit' : 'owl';
   }
 
   function drawPetMiniIcons(){
@@ -1202,18 +925,6 @@
     const filled = !!(document.getElementById('wInit').value && document.getElementById('wGoal').value && document.getElementById('goalSelect').value && document.getElementById('routineSelect').value && document.getElementById('energySelect').value && hasNames);
     document.getElementById('startBtn').disabled = !filled;
   }
-
-  function seedHistory(){
-    const pattern = ['full','full','full','full','full','full','partial','none','full','full','full','full','full','none','partial','partial','full','full'];
-    pattern.forEach((status, idx) => {
-      const d = addDays(stripTime(new Date()), -(idx + 1));
-      const key = dateKey(d);
-      if (status === 'full') state.log[key] = { vitamin: true, eat: true };
-      else if (status === 'partial') state.log[key] = { vitamin: true, eat: false };
-      else state.log[key] = { vitamin: false, eat: false };
-    });
-  }
-  // seedHistory() ya no se ejecuta: la app siempre empieza desde cero (0 días activos, 0 racha).
 
   function goTo(id){
     document.querySelectorAll('.app-view').forEach((v) => v.classList.remove('active'));
@@ -1258,14 +969,16 @@
     state.anemia = on;
   });
 
+  /* ===== TIENDA ===== */
   const storeProducts = [
-    { id: 'chocoteja', cat: 'comitas', emoji: '🍫', name: 'Chocotejas Nutribit', desc: 'Hierro + vitamina B12. Ideal si tienes anemia.', tags: ['Hierro','B12'], price: 12.90, rating: 4.8, reviews: 312, sales: 1840, stock: 72 },
-    { id: 'gomita', cat: 'comitas', emoji: '🍬', name: 'Gomitas Nutribit', desc: 'Multivitamínico diario, mantenimiento general.', tags: ['Multivitamínico'], price: 9.90, rating: 4.6, reviews: 248, sales: 1512, stock: 64 },
-    { id: 'galleta', cat: 'comitas', emoji: '🍪', name: 'Galletas Nutribit', desc: 'Proteína + calorías extra para ganar peso sano.', tags: ['Proteína','Calorías+'], price: 11.50, rating: 4.7, reviews: 196, sales: 980, stock: 55 },
+    { id: 'galletaHierro', cat: 'galletas', emoji: '🍪', name: 'Galletas de Hierro & Cacao', desc: 'Con hierro y vitamina B12. Ideal si tienes anemia.', tags: ['Hierro','B12'], price: 12.90, rating: 4.8, reviews: 312, sales: 1840, stock: 72 },
+    { id: 'galletaVit', cat: 'galletas', emoji: '🍪', name: 'Galletas Multivitamínicas', desc: 'Avena y plátano con vitaminas para el día a día.', tags: ['Multivitamínico','Avena'], price: 9.90, rating: 4.6, reviews: 248, sales: 1512, stock: 64 },
+    { id: 'galletaProt', cat: 'galletas', emoji: '🥠', name: 'Galletas Proteicas', desc: 'Proteína + calorías extra para ganar peso sano.', tags: ['Proteína','Calorías+'], price: 11.50, rating: 4.7, reviews: 196, sales: 980, stock: 55 },
+    { id: 'galletaLight', cat: 'galletas', emoji: '🍘', name: 'Galletas de Quinua Light', desc: 'Ligeras y con fibra, para controlar el peso sin pasar hambre.', tags: ['Fibra','Bajas en azúcar'], price: 10.50, rating: 4.5, reviews: 121, sales: 720, stock: 60 },
     { id: 'barraQuinua', cat: 'barras', emoji: '🌾', name: 'Barra de Quinua & Miel', desc: 'Energía sostenida antes de entrenar o estudiar.', tags: ['Fibra','Energía'], price: 6.50, rating: 4.9, reviews: 410, sales: 2210, stock: 80 },
     { id: 'barraMaca', cat: 'barras', emoji: '⚡', name: 'Barra Proteica de Maca', desc: 'Refuerzo energético andino con proteína vegetal.', tags: ['Proteína','Maca'], price: 7.20, rating: 4.5, reviews: 175, sales: 860, stock: 48 },
     { id: 'barraCacao', cat: 'barras', emoji: '🍫', name: 'Barra Frutos Secos & Cacao', desc: 'Snack denso en calorías buenas, ideal a media tarde.', tags: ['Frutos secos','Cacao'], price: 7.90, rating: 4.4, reviews: 132, sales: 640, stock: 36 },
-    { id: 'jugoCamu', cat: 'bebidas', emoji: '🧃', name: 'Jugo de Camu Camu', desc: 'Vitamina C natural, refuerza tus defensas.', tags: ['Vitamina C'], price: 5.50, rating: 4.7, reviews: 298, sales: 1690, stock: 90 },
+    { id: 'jugoCamu', cat: 'bebidas', emoji: '🧃', name: 'Jugo de Camu Camu', desc: 'Vitamina C natural, ayuda a absorber el hierro.', tags: ['Vitamina C'], price: 5.50, rating: 4.7, reviews: 298, sales: 1690, stock: 90 },
     { id: 'batidoAlgarrobina', cat: 'bebidas', emoji: '🥤', name: 'Batido de Algarrobina', desc: 'Proteína y energía en un batido criollo.', tags: ['Proteína'], price: 8.90, rating: 4.8, reviews: 221, sales: 1240, stock: 58 },
     { id: 'aguaAndina', cat: 'bebidas', emoji: '💧', name: 'Agua Isotónica Andina', desc: 'Hidratación con electrolitos, sin azúcar añadida.', tags: ['Electrolitos'], price: 4.50, rating: 4.3, reviews: 150, sales: 930, stock: 110 }
   ];
@@ -1274,15 +987,13 @@
   let storeCat = 'all';
 
   function recommendedProductId(){
-    if (state.anemia) return 'chocoteja';
-    if (state.weightGoal > state.weightInit) return 'galleta';
-    return 'gomita';
+    if (state.anemia) return 'galletaHierro';
+    if (state.weightGoal > state.weightInit) return 'galletaProt';
+    if (state.weightGoal < state.weightInit) return 'galletaLight';
+    return 'galletaVit';
   }
 
-  function setupProducts(){
-    renderStoreStats();
-    renderStoreGrid();
-  }
+  function setupProducts(){ renderStoreStats(); renderStoreGrid(); }
 
   function animateNumber(el, target, opts){
     opts = opts || {};
@@ -1312,9 +1023,7 @@
 
     const fg = document.getElementById('statStarsFg');
     fg.style.width = '0%';
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      fg.style.width = (avgRating / 5 * 100) + '%';
-    }));
+    requestAnimationFrame(() => requestAnimationFrame(() => { fg.style.width = (avgRating / 5 * 100) + '%'; }));
   }
 
   function starsMarkup(rating){
@@ -1328,7 +1037,7 @@
     const soldOut = p.stock <= 0;
     const pct = Math.max(0, Math.min(100, (p.stock / p.maxStock) * 100));
     return `
-      <div class="card store-card" style="animation-delay:${idx * 60}ms;" data-cat="${p.cat}" data-id="${p.id}">
+      <div class="card store-card${isReco ? ' is-reco' : ''}" style="animation-delay:${idx * 60}ms;" data-cat="${p.cat}" data-id="${p.id}">
         <div class="store-card-top">
           <div class="store-icon">${p.emoji}</div>
           <div class="store-badges">
@@ -1358,7 +1067,9 @@
   function renderStoreGrid(){
     const grid = document.getElementById('storeGrid');
     const recoId = recommendedProductId();
-    const list = storeCat === 'all' ? storeProducts : storeProducts.filter((p) => p.cat === storeCat);
+    let list = storeCat === 'all' ? storeProducts.slice() : storeProducts.filter((p) => p.cat === storeCat);
+    // el producto recomendado siempre va primero
+    list.sort((a, b) => (b.id === recoId) - (a.id === recoId));
     grid.innerHTML = list.map((p, idx) => productCardMarkup(p, idx, recoId)).join('');
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -1366,9 +1077,7 @@
       grid.querySelectorAll('.store-stock-fill').forEach((el) => { el.style.width = el.dataset.pct + '%'; });
     }));
 
-    grid.querySelectorAll('.btn-add').forEach((btn) => {
-      btn.addEventListener('click', () => addToCart(btn));
-    });
+    grid.querySelectorAll('.btn-add').forEach((btn) => btn.addEventListener('click', () => addToCart(btn)));
   }
 
   function updateProductCardDOM(id){
@@ -1403,8 +1112,8 @@
 
   function sparkleBurst(originEl){
     const rect = originEl.getBoundingClientRect();
-    const phoneRect = document.querySelector('.screen').getBoundingClientRect();
     const container = document.querySelector('.screen');
+    const phoneRect = container.getBoundingClientRect();
     const colors = ['#F2A93C', '#E2572B', '#7bc8a4', '#ffd166'];
     for (let i = 0; i < 10; i++) {
       const el = document.createElement('div');
@@ -1421,13 +1130,14 @@
     }
   }
 
-  function cartTotalCount(){
-    return Object.values(state.cart).reduce((a, b) => a + b, 0);
-  }
+  function cartTotalCount(){ return Object.values(state.cart).reduce((a, b) => a + b, 0); }
+  function updateCartBadge(){ document.getElementById('cartCount').textContent = cartTotalCount(); }
 
-  function updateCartBadge(){
-    const cartEl = document.getElementById('cartCount');
-    cartEl.textContent = cartTotalCount();
+  function flashToast(text, ms){
+    toastMsg.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(state.cartToastTimer);
+    state.cartToastTimer = setTimeout(hideToast, ms || 2200);
   }
 
   function addToCart(btn){
@@ -1445,10 +1155,7 @@
     cartEl.classList.remove('bump'); void cartEl.offsetWidth; cartEl.classList.add('bump');
     btn.classList.remove('bump'); void btn.offsetWidth; btn.classList.add('bump');
     sparkleBurst(btn);
-    toastMsg.textContent = `Agregaste ${btn.dataset.name} 🛒`;
-    toast.classList.add('show');
-    clearTimeout(state.cartToastTimer);
-    state.cartToastTimer = setTimeout(hideToast, 2200);
+    flashToast(`Agregaste ${btn.dataset.name} 🛒`);
   }
 
   function changeCartQty(id, delta){
@@ -1495,9 +1202,9 @@
               <span>S/ ${p.price.toFixed(2)} c/u · S/ ${lineTotal.toFixed(2)}</span>
             </div>
             <div class="qty-stepper">
-              <button class="qty-minus" data-id="${id}">–</button>
+              <button class="qty-minus" data-id="${id}" aria-label="Quitar uno">–</button>
               <b>${qty}</b>
-              <button class="qty-plus" data-id="${id}">+</button>
+              <button class="qty-plus" data-id="${id}" aria-label="Agregar uno">+</button>
             </div>
           </div>`;
       }).join('');
@@ -1505,20 +1212,28 @@
 
     document.getElementById('cartTotal').textContent = 'S/ ' + total.toFixed(2);
     document.getElementById('cartPayBtn').disabled = !ids.length;
+    document.getElementById('cartClearBtn').style.display = ids.length ? 'block' : 'none';
 
     wrap.querySelectorAll('.qty-plus').forEach((b) => b.addEventListener('click', () => changeCartQty(b.dataset.id, 1)));
     wrap.querySelectorAll('.qty-minus').forEach((b) => b.addEventListener('click', () => changeCartQty(b.dataset.id, -1)));
   }
 
-  function openCart(){
-    renderCartModal();
-    document.getElementById('cartOverlay').classList.add('show');
-  }
-  function closeCart(){
-    document.getElementById('cartOverlay').classList.remove('show');
-  }
+  function openCart(){ renderCartModal(); document.getElementById('cartOverlay').classList.add('show'); }
+  function closeCart(){ document.getElementById('cartOverlay').classList.remove('show'); }
   document.getElementById('cartOpenBtn').addEventListener('click', openCart);
   document.getElementById('cartCloseBtn').addEventListener('click', closeCart);
+  document.getElementById('cartOverlay').addEventListener('click', (e) => { if (e.target.id === 'cartOverlay') closeCart(); });
+
+  document.getElementById('cartClearBtn').addEventListener('click', () => {
+    Object.keys(state.cart).forEach((id) => {
+      const p = storeProducts.find((x) => x.id === id);
+      if (p) p.stock += state.cart[id];
+      updateProductCardDOM(id);
+    });
+    state.cart = {};
+    updateCartBadge();
+    renderCartModal();
+  });
 
   document.getElementById('cartPayBtn').addEventListener('click', () => {
     const ids = Object.keys(state.cart);
@@ -1529,22 +1244,16 @@
     });
     const total = items.reduce((s, it) => s + it.price * it.qty, 0);
     const d = effectiveToday();
-    state.purchaseHistory.unshift({
-      date: d.getDate() + ' ' + monthNames[d.getMonth()].slice(0, 3) + '.',
-      items,
-      total
-    });
+    state.purchaseHistory.unshift({ date: d.getDate() + ' ' + monthNames[d.getMonth()].slice(0, 3) + '.', items, total });
     state.cart = {};
     updateCartBadge();
     closeCart();
-    toastMsg.textContent = `¡Compra realizada! S/ ${total.toFixed(2)} 🎉`;
-    toast.classList.add('show');
-    clearTimeout(state.cartToastTimer);
-    state.cartToastTimer = setTimeout(hideToast, 2600);
+    flashToast(`¡Compra realizada! S/ ${total.toFixed(2)} 🎉`, 2600);
     miniConfetti(document.getElementById('screen-products'));
     renderPurchaseHistory();
   });
 
+  /* ===== RACHA ===== */
   function computeCurrentStreak(){
     let streak = 0;
     let cursor = effectiveToday();
@@ -1553,18 +1262,14 @@
       if (state.log[key] && statusOf(state.log[key]) === 'full') {
         streak += 1;
         cursor = addDays(cursor, -1);
-      } else {
-        break;
-      }
+      } else break;
     }
     return streak;
   }
 
   function computeLongestStreak(){
     const keys = sortedKeys();
-    let longest = 0;
-    let run = 0;
-    let prevDate = null;
+    let longest = 0, run = 0, prevDate = null;
     keys.forEach((k) => {
       const [y,m,d] = k.split('-').map(Number);
       const date = new Date(y, m - 1, d);
@@ -1573,9 +1278,7 @@
         if (prevDate && (date - prevDate === 86400000)) run += 1;
         else run = 1;
         longest = Math.max(longest, run);
-      } else {
-        run = 0;
-      }
+      } else run = 0;
       prevDate = date;
     });
     return longest;
@@ -1586,8 +1289,7 @@
     row.innerHTML = '';
     for (let i = 6; i >= 0; i--) {
       const d = addDays(effectiveToday(), -i);
-      const key = dateKey(d);
-      const st = statusOf(getEntry(key));
+      const st = statusOf(getEntry(dateKey(d)));
       const pip = document.createElement('div');
       pip.className = 'day-pip' + (st === 'full' ? ' full' : st === 'partial' ? ' partial' : '') + (i === 0 ? ' today' : '');
       pip.textContent = st === 'full' ? '✓' : dayNamesShort[d.getDay()][0].toUpperCase();
@@ -1623,25 +1325,27 @@
   }
 
   function checkTodayComplete(entry){
+    renderWeek();
+    updateStreakUI();
+    updateProfile();
     if (entry.vitamin && entry.eat) {
-      renderWeek();
-      updateStreakUI();
-      updateProfile();
       ownSpeech.textContent = `¡Bien ahí! ${state.petName} dice que tu racha va en ${computeCurrentStreak()} días.`;
       setOwlState('idle');
       hideToast();
       clearInterval(state.reminderTimer);
       miniConfetti(document.getElementById('screen-home'));
+    } else if (entry.vitamin || entry.eat) {
+      ownSpeech.textContent = entry.vitamin ? 'Galleta lista 🍪 Te falta comer mejor para sumar la racha.' : 'Buena comida 🍽️ Te falta tu galleta para sumar la racha.';
+      if (state.remindersOn) startReminderCycle();
     } else {
-      renderWeek();
-      updateStreakUI();
-      updateProfile();
-      ownSpeech.textContent = 'Te falta un paso para sumar ese día de racha.';
+      ownSpeech.textContent = 'Marca tus dos hábitos de hoy para sumar racha.';
+      if (state.remindersOn) startReminderCycle();
     }
   }
 
   function updateStreakUI(){ document.getElementById('streakCount').textContent = computeCurrentStreak(); }
 
+  /* ===== CALENDARIO ===== */
   const calGrid = document.getElementById('calGrid');
   const calMonthLabel = document.getElementById('calMonthLabel');
   document.getElementById('calPrev').addEventListener('click', () => { state.calDisplay.setMonth(state.calDisplay.getMonth() - 1); renderCalendar(); });
@@ -1685,20 +1389,14 @@
         cell.classList.add('none-day');
         cell.addEventListener('click', () => showDayToast(d, { vitamin: false, eat: false }));
       }
-
       calGrid.appendChild(cell);
     }
-
     renderHistory();
   }
 
   function showDayToast(d, entry){
     const label = d.getDate() + ' de ' + monthNames[d.getMonth()];
-    const pieces = ['vitamina ' + (entry.vitamin ? '✓' : '✕'), 'comida ' + (entry.eat ? '✓' : '✕')];
-    toastMsg.textContent = label + ': ' + pieces.join(' · ');
-    toast.classList.add('show');
-    clearTimeout(state._dayToastTimer);
-    state._dayToastTimer = setTimeout(hideToast, 2600);
+    flashToast(label + ': galleta ' + (entry.vitamin ? '✓' : '✕') + ' · comida ' + (entry.eat ? '✓' : '✕'), 2600);
   }
 
   function renderHistory(){
@@ -1709,7 +1407,6 @@
       wrap.innerHTML = '<p class="screen-sub" style="margin:0;">Aún no hay historial.</p>';
       return;
     }
-
     keys.forEach((k) => {
       const [y,m,d] = k.split('-').map(Number);
       const date = new Date(y, m - 1, d);
@@ -1717,12 +1414,13 @@
       const row = document.createElement('div');
       row.className = 'hist-row';
       const color = st === 'full' ? 'var(--primary)' : st === 'partial' ? 'var(--secondary)' : 'var(--line)';
-      const desc = st === 'full' ? 'Vitamina + comida ✓' : st === 'partial' ? 'Solo un hábito cumplido' : 'Sin actividad';
+      const desc = st === 'full' ? 'Galleta + comida ✓' : st === 'partial' ? 'Solo un hábito cumplido' : 'Sin actividad';
       row.innerHTML = `<span class="hist-dot" style="background:${color};"></span><span class="hist-date">${date.getDate()} ${monthNames[date.getMonth()].slice(0,3)}</span><span class="hist-desc">${desc}</span>`;
       wrap.appendChild(row);
     });
   }
 
+  /* ===== STATS ===== */
   function renderStats(){
     const keys = sortedKeys();
     const current = computeCurrentStreak();
@@ -1758,7 +1456,7 @@
       const w = state.goalReached ? state.weightGoal : state.weightInit + progress * (state.weightGoal - state.weightInit);
       series.push(w);
     });
-    if (!series.length) series.push(state.weightInit);
+    if (!series.length) series.push(state.goalReached ? state.weightGoal : state.weightInit);
     return series;
   }
 
@@ -1803,6 +1501,7 @@
     });
   }
 
+  /* ===== PERFIL ===== */
   function updateProfile(){
     document.getElementById('pStart').textContent = state.weightInit ? state.weightInit + ' kg' : '–';
     document.getElementById('pGoal').textContent = state.weightGoal ? state.weightGoal + ' kg' : '–';
@@ -1816,7 +1515,7 @@
     }
 
     document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressLabel').textContent = pct >= 100 ? '¡Meta alcanzada!' : 'Progreso simulado: ' + pct + '%';
+    document.getElementById('progressLabel').textContent = pct >= 100 ? '¡Meta alcanzada!' : (pct === 0 ? 'Recién empezando' : 'Progreso simulado: ' + pct + '%');
 
     renderStatsBody();
     renderPurchaseHistory();
@@ -1840,9 +1539,7 @@
     const circumference = 264;
     const offset = circumference - (compliance / 100) * circumference;
     ring.style.strokeDashoffset = circumference;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      ring.style.strokeDashoffset = offset;
-    }));
+    requestAnimationFrame(() => requestAnimationFrame(() => { ring.style.strokeDashoffset = offset; }));
   }
 
   function renderPurchaseHistory(){
@@ -1873,8 +1570,7 @@
   };
 
   function renderAppRating(){
-    const stars = document.querySelectorAll('#appRatingStars button');
-    stars.forEach((btn) => {
+    document.querySelectorAll('#appRatingStars button').forEach((btn) => {
       btn.classList.toggle('filled', Number(btn.dataset.val) <= state.appRating);
     });
     document.getElementById('appRatingMsg').textContent = state.appRating ? appRatingMessages[state.appRating] : '';
@@ -1889,13 +1585,14 @@
     document.querySelectorAll('#appRatingStars button').forEach((b, i) => {
       if (i < val) { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
     });
-    miniConfetti(document.querySelector('#screen-profile .app-rating-stars').closest('.card'));
+    miniConfetti(btn.closest('.card'));
   });
 
+  /* ===== RECORDATORIOS ===== */
   const toast = document.getElementById('toast');
   const toastMsg = document.getElementById('toastMsg');
   const reminderMessages = [
-    'Te olvidaste de tomar tu vitamina hoy 💊',
+    'Te olvidaste de tu galleta Nutribit hoy 🍪',
     'Te olvidaste de comer mejor hoy 🍽️',
     'Tu racha está en riesgo, no la rompas 🔥',
     'Tu mascota te está esperando...'
@@ -1905,13 +1602,16 @@
     if (!state.remindersOn) return;
     const entry = getEntry(dateKey(effectiveToday()));
     if (entry.vitamin && entry.eat) return;
-    toastMsg.textContent = reminderMessages[state.reminderStep % reminderMessages.length];
+    // mensaje según lo que falte
+    let pool = reminderMessages;
+    if (entry.vitamin) pool = [reminderMessages[1], reminderMessages[2], reminderMessages[3]];
+    else if (entry.eat) pool = [reminderMessages[0], reminderMessages[2], reminderMessages[3]];
+    const msg = pool[state.reminderStep % pool.length];
     state.reminderStep += 1;
+    toastMsg.textContent = msg;
     toast.classList.add('show');
     setOwlState('reminder');
-    if (document.getElementById('screen-home').classList.contains('active')) {
-      ownSpeech.textContent = reminderMessages[(state.reminderStep - 1) % reminderMessages.length];
-    }
+    if (document.getElementById('screen-home').classList.contains('active')) ownSpeech.textContent = msg;
   }
 
   function hideToast(){
@@ -1923,8 +1623,8 @@
   function startReminderCycle(){
     clearInterval(state.reminderTimer);
     if (!state.remindersOn) return;
-    setTimeout(showReminderToast, 3500);
     state.reminderTimer = setInterval(showReminderToast, 14000);
+    setTimeout(showReminderToast, 3500);
   }
 
   document.getElementById('toastClose').addEventListener('click', hideToast);
@@ -1974,8 +1674,7 @@
   });
 
   function triggerCelebration(){
-    const finalText = `${state.petName} está orgulloso de ti. Llegaste a ${state.weightGoal || 'tu meta'} kg cuidándote con Nutribit.`;
-    document.getElementById('celebrateMsg').textContent = finalText;
+    document.getElementById('celebrateMsg').textContent = `${state.petName} está orgulloso de ti. Llegaste a ${state.weightGoal || 'tu meta'} kg cuidándote con Nutribit.`;
     document.getElementById('celebrateOverlay').classList.add('show');
     setOwlState('celebrate');
     bigConfetti(document.getElementById('celebrateOverlay'));
@@ -1983,6 +1682,7 @@
 
   document.getElementById('closeCelebrate').addEventListener('click', () => {
     document.getElementById('celebrateOverlay').classList.remove('show');
+    setOwlState('idle');
   });
 
   function confettiPiece(container, colors){
