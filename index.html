@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NUTRI BIT — prototipo</title>
+<title>NUTRI VIT — prototipo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -434,6 +434,26 @@
   .detail-buy .store-price { font-size: 20px; }
   .detail-buy .btn-add { flex: 1; padding: 12px 16px; font-size: 13px; }
 
+  /* ===== ALERGIAS ===== */
+  .allergy-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .al-chip { border: 1.5px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ink); transition: all 0.2s ease; }
+  .al-chip:hover { transform: translateY(-1px); }
+  .al-chip.on { background: #ffe3e0; border-color: #e5484d; color: #b42318; animation: starPop 0.35s ease; }
+  .field-hint { font-size: 11px; color: var(--muted); margin: 0; line-height: 1.4; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .allergy-alert { display: inline-flex; align-items: center; gap: 4px; background: #fdecea; color: #c0262d; border: 1px solid #f5b5b8; border-radius: 999px; padding: 3px 10px; font-size: 10.5px; font-weight: 700; margin: 0 0 8px; animation: alertPulse 2s ease-in-out infinite; }
+  @keyframes alertPulse { 0%,100% { box-shadow: 0 0 0 rgba(229,72,77,0); } 50% { box-shadow: 0 0 8px rgba(229,72,77,0.45); } }
+  .store-card.has-allergy { border-color: #e5484d; }
+  .store-profile .chip.warn { background: #fdecea; color: #c0262d; }
+  .alert-box { background: #fdecea; border: 1.5px solid #e5484d; color: #a11a20; border-radius: 14px; padding: 10px 12px; font-size: 12px; line-height: 1.45; animation: slideUp 0.4s ease both; }
+  .ing.alert { background: #fdecea; color: #c0262d; border: 1px solid #f5b5b8; }
+
+  /* ===== PAQUETE / CAJA ===== */
+  .var-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .var-chip { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; border: 1.5px solid var(--line); background: var(--card); border-radius: 14px; padding: 8px 10px; color: var(--ink); text-align: left; transition: all 0.2s ease; }
+  .var-chip b { font-family: 'Fredoka', sans-serif; font-size: 12.5px; }
+  .var-chip small { font-size: 10.5px; color: var(--muted); }
+  .var-chip.active { border-color: var(--primary); background: rgba(255,209,102,0.2); box-shadow: 0 6px 14px rgba(0,0,0,0.08); transform: translateY(-1px); }
+
   /* ===== CARRITO ===== */
   .cart-overlay { position: absolute; inset: 0; background: rgba(17,19,25,0.45); display: none; align-items: flex-end; justify-content: center; z-index: 41; border-radius: 29px; overflow: hidden; }
   .cart-overlay.show { display: flex; }
@@ -512,14 +532,12 @@
   .confetti-piece { position: absolute; top: -10px; width: 8px; height: 14px; opacity: 0.95; border-radius: 2px; pointer-events: none; }
 
   .owl-svg { width: 100%; height: 100%; }
-  .owl-svg .eyelid-l, .owl-svg .eyelid-r { transform-origin: center; transform: scaleY(0); }
+  .owl-svg .pupil { transition: transform 0.12s ease-out; }
   .owl-svg.idle { animation: bob 2.7s ease-in-out infinite; }
-  .owl-svg.idle .eyelid-l, .owl-svg.idle .eyelid-r { animation: blink 4.5s ease-in-out infinite; }
   .owl-svg.reminder { animation: shake 0.6s ease-in-out infinite; }
   .owl-svg.celebrate { animation: jump 0.7s ease-in-out infinite; }
 
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-  @keyframes blink { 0%, 88%, 100% { transform: scaleY(0); } 92% { transform: scaleY(1); } }
   @keyframes shake { 0%, 100% { transform: translateX(0) rotate(0deg); } 20% { transform: translateX(-4px) rotate(-3deg); } 40% { transform: translateX(4px) rotate(3deg); } 60% { transform: translateX(-3px) rotate(-2deg); } 80% { transform: translateX(3px) rotate(2deg); } }
   @keyframes jump { 0%,100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-16px) scale(1.03); } 50% { transform: translateY(0) scale(0.98); } }
   @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(340px) rotate(360deg); opacity: 0; } }
@@ -543,7 +561,7 @@
   <div class="stage">
     <div class="intro">
       <div class="eyebrow">Prototipo</div>
-      <h1>NUTRI BIT<span>.</span> salud con mascota.</h1>
+      <h1>NUTRI VIT<span>.</span> salud con mascota.</h1>
       <p>Elige tu animalito, ponle nombre, responde unas preguntas y empieza tu racha con hábitos sanos y galletas nutritivas hechas para ti.</p>
       <div class="tag-row">
         <span class="tag">Mascota</span>
@@ -647,12 +665,25 @@
             <button class="toggle" id="anemiaToggle" role="switch" aria-checked="false" aria-label="Tengo anemia diagnosticada"></button>
           </div>
 
+          <div class="field">
+            <label>¿Eres alérgico a algo?</label>
+            <div class="allergy-grid" id="allergyGrid">
+              <button type="button" class="al-chip" data-al="gluten" aria-pressed="false">🌾 Gluten</button>
+              <button type="button" class="al-chip" data-al="huevo" aria-pressed="false">🥚 Huevo</button>
+              <button type="button" class="al-chip" data-al="mani" aria-pressed="false">🥜 Maní</button>
+              <button type="button" class="al-chip" data-al="frutossecos" aria-pressed="false">🌰 Frutos secos</button>
+              <button type="button" class="al-chip" data-al="lacteos" aria-pressed="false">🥛 Lácteos</button>
+              <button type="button" class="al-chip" data-al="soya" aria-pressed="false">🌱 Soya</button>
+            </div>
+            <p class="field-hint">Opcional. Si marcas alguna, la tienda se ajusta y te avisamos en rojo.</p>
+          </div>
+
           <button class="btn-primary" id="startBtn" disabled>Entrar a la app</button>
           <p class="screen-sub" style="text-align:center; margin-top:-6px;">Esto es una simulación local y no sustituye atención médica.</p>
         </div>
 
         <div class="app-view" id="screen-home">
-          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI BIT</div></div>
+          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI VIT</div></div>
           <div class="streak-card">
             <div class="flame">🔥</div>
             <div class="streak-num" id="streakCount">0</div>
@@ -668,7 +699,7 @@
           <div class="task-list">
             <button class="task" id="taskVitamin">
               <span class="check" id="checkVitamin"></span>
-              <span class="txt"><strong>Comí mi galleta NUTRI BIT 🍪</strong><small>Tu galleta Nutri Vit del día</small></span>
+              <span class="txt"><strong>Comí mi galleta NUTRI VIT 🍪</strong><small>Tu galleta Nutri Vit del día</small></span>
             </button>
             <button class="task" id="taskEat">
               <span class="check" id="checkEat"></span>
@@ -678,7 +709,7 @@
         </div>
 
         <div class="app-view" id="screen-calendar">
-          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI BIT</div></div>
+          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI VIT</div></div>
           <h1 class="screen-title">Calendario</h1>
           <p class="screen-sub">Completo = galleta + comida. Parcial = solo uno. Gris = ninguno.</p>
 
@@ -705,7 +736,7 @@
         </div>
 
         <div class="app-view" id="screen-stats">
-          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI BIT</div></div>
+          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI VIT</div></div>
           <h1 class="screen-title">Estadísticas</h1>
 
           <div class="stat-grid">
@@ -742,9 +773,9 @@
         </div>
 
         <div class="app-view" id="screen-products">
-          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI BIT</div></div>
+          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI VIT</div></div>
           <h1 class="screen-title">Tienda</h1>
-          <p class="screen-sub">Toca una galleta para ver sus ingredientes y por qué te la recomendamos.</p>
+          <p class="screen-sub">Toca un producto para ver sus ingredientes y por qué te lo recomendamos.</p>
 
           <div class="store-stats">
             <div class="store-stat"><b id="statSales">0</b><span>Ventas</span></div>
@@ -773,13 +804,14 @@
             <button class="tab-btn" data-cat="galletas">🍪 Galletas</button>
             <button class="tab-btn" data-cat="barras">⚡ Barras</button>
             <button class="tab-btn" data-cat="bebidas">🧃 Bebidas</button>
+            <button class="tab-btn" data-cat="snacks">🥜 Snacks</button>
           </div>
 
           <div class="store-grid" id="storeGrid"></div>
         </div>
 
         <div class="app-view" id="screen-profile">
-          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI BIT</div></div>
+          <div class="brand-row"><div class="brand-mark">N</div><div class="brand-name">NUTRI VIT</div></div>
           <h1 class="screen-title">Tu progreso</h1>
 
           <div class="card">
@@ -819,7 +851,7 @@
           </div>
 
           <div class="card">
-            <h3 style="font-family:'Fredoka', sans-serif; font-size:14px; margin:0 0 4px; text-align:center;">¿Cómo te está tratando NUTRI BIT?</h3>
+            <h3 style="font-family:'Fredoka', sans-serif; font-size:14px; margin:0 0 4px; text-align:center;">¿Cómo te está tratando NUTRI VIT?</h3>
             <p class="screen-sub" style="text-align:center; margin-bottom:2px;">Danos tu calificación</p>
             <div class="app-rating-stars" id="appRatingStars">
               <button data-val="1" aria-label="1 estrella">★</button>
@@ -857,7 +889,7 @@
           <div class="owl-wrap" id="owlCelebrate"></div>
           <div class="badge-pill">🏆 Meta alcanzada</div>
           <h2>¡Lo lograste!</h2>
-          <p id="celebrateMsg">Llegaste a tu peso meta cuidándote con NUTRI BIT.</p>
+          <p id="celebrateMsg">Llegaste a tu peso meta cuidándote con NUTRI VIT.</p>
           <button class="btn-primary" id="closeCelebrate">Seguir cuidándome</button>
         </div>
 
@@ -927,7 +959,7 @@
     baseToday: new Date(), todayOffset: 0, log: {},
     goalReached: false, remindersOn: true, reminderTimer: null, reminderStep: 0,
     calDisplay: null, cart: {}, cartToastTimer: null, purchaseHistory: [], appRating: 0,
-    fxTimer: null, personalIds: [], detailId: null
+    fxTimer: null, personalIds: [], detailId: null, allergies: [], selVariant: {}
   };
 
   function stripTime(d){ const n = new Date(d); n.setHours(0,0,0,0); return n; }
@@ -943,24 +975,28 @@
     });
   }
 
+  let svgUid = 0;
   function petSvg(type){
+    const u = 'u' + (++svgUid);
     if (type === 'penguin') {
       return `<svg class="owl-svg idle" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="penguinBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#234E72"/><stop offset="1" stop-color="#163650"/></linearGradient>
-          <linearGradient id="penguinBelly" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8FDFF"/><stop offset="1" stop-color="#CFEAFD"/></linearGradient>
+          <linearGradient id="penguinBody${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#234E72"/><stop offset="1" stop-color="#163650"/></linearGradient>
+          <linearGradient id="penguinBelly${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8FDFF"/><stop offset="1" stop-color="#CFEAFD"/></linearGradient>
         </defs>
         <ellipse cx="100" cy="181" rx="48" ry="7" fill="#B7D7E8" opacity=".35"/>
-        <ellipse cx="100" cy="120" rx="61" ry="67" fill="url(#penguinBody)"/>
-        <ellipse cx="100" cy="128" rx="39" ry="47" fill="url(#penguinBelly)"/>
+        <ellipse cx="100" cy="120" rx="61" ry="67" fill="url(#penguinBody${u})"/>
+        <ellipse cx="100" cy="128" rx="39" ry="47" fill="url(#penguinBelly${u})"/>
         <path d="M52 116 Q27 128 38 151 Q47 163 62 145 L70 128 Z" fill="#1B405E"/>
         <path d="M148 116 Q173 128 162 151 Q153 163 138 145 L130 128 Z" fill="#1B405E"/>
         <circle cx="78" cy="86" r="22" fill="#F9FCFF"/>
         <circle cx="122" cy="86" r="22" fill="#F9FCFF"/>
-        <circle cx="78" cy="89" r="8" fill="#17364F"/>
-        <circle cx="122" cy="89" r="8" fill="#17364F"/>
-        <circle cx="75" cy="86" r="2.8" fill="#fff"/>
-        <circle cx="119" cy="86" r="2.8" fill="#fff"/>
+        <g class="pupil" data-mx="8" data-my="8">
+          <circle cx="78" cy="89" r="8" fill="#17364F"/>
+          <circle cx="122" cy="89" r="8" fill="#17364F"/>
+          <circle cx="75" cy="86" r="2.8" fill="#fff"/>
+          <circle cx="119" cy="86" r="2.8" fill="#fff"/>
+        </g>
         <path d="M90 103 Q100 98 110 103 L100 116 Z" fill="#F4B63F"/>
         <path d="M95 107 L100 114 L105 107" fill="#E99B2F"/>
         <path d="M79 130 Q100 143 121 130" stroke="#A7D4EA" stroke-width="4" fill="none" stroke-linecap="round" opacity=".9"/>
@@ -972,20 +1008,22 @@
 
     if (type === 'rabbit') {
       return `<svg class="owl-svg idle" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="rabbitFur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9DDEA"/><stop offset="1" stop-color="#EFBFD8"/></linearGradient></defs>
+        <defs><linearGradient id="rabbitFur${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9DDEA"/><stop offset="1" stop-color="#EFBFD8"/></linearGradient></defs>
         <ellipse cx="100" cy="181" rx="50" ry="7" fill="#B9D9B4" opacity=".35"/>
-        <ellipse cx="69" cy="70" rx="20" ry="48" fill="url(#rabbitFur)"/>
-        <ellipse cx="131" cy="70" rx="20" ry="48" fill="url(#rabbitFur)"/>
+        <ellipse cx="69" cy="70" rx="20" ry="48" fill="url(#rabbitFur${u})"/>
+        <ellipse cx="131" cy="70" rx="20" ry="48" fill="url(#rabbitFur${u})"/>
         <ellipse cx="69" cy="70" rx="9" ry="34" fill="#E9A9C5"/>
         <ellipse cx="131" cy="70" rx="9" ry="34" fill="#E9A9C5"/>
-        <ellipse cx="100" cy="129" rx="63" ry="55" fill="url(#rabbitFur)"/>
+        <ellipse cx="100" cy="129" rx="63" ry="55" fill="url(#rabbitFur${u})"/>
         <ellipse cx="100" cy="132" rx="47" ry="42" fill="#FFF9FC"/>
         <ellipse cx="77" cy="119" rx="12" ry="16" fill="#FFF9FC"/>
         <ellipse cx="123" cy="119" rx="12" ry="16" fill="#FFF9FC"/>
-        <circle cx="77" cy="119" r="6" fill="#49343D"/>
-        <circle cx="123" cy="119" r="6" fill="#49343D"/>
-        <circle cx="79" cy="117" r="2.2" fill="#fff"/>
-        <circle cx="125" cy="117" r="2.2" fill="#fff"/>
+        <g class="pupil" data-mx="4.5" data-my="7">
+          <circle cx="77" cy="119" r="6" fill="#49343D"/>
+          <circle cx="123" cy="119" r="6" fill="#49343D"/>
+          <circle cx="79" cy="117" r="2.2" fill="#fff"/>
+          <circle cx="125" cy="117" r="2.2" fill="#fff"/>
+        </g>
         <ellipse cx="64" cy="136" rx="10" ry="6" fill="#F2A6C2" opacity=".7"/>
         <ellipse cx="136" cy="136" rx="10" ry="6" fill="#F2A6C2" opacity=".7"/>
         <path d="M94 132 Q100 126 106 132 L100 138 Z" fill="#D986A7"/>
@@ -1006,12 +1044,12 @@
       <ellipse cx="100" cy="132" rx="38" ry="38" fill="#F2A93C"/>
       <circle cx="76" cy="96" r="24" fill="#FFFDF9"/>
       <circle cx="124" cy="96" r="24" fill="#FFFDF9"/>
-      <circle cx="76" cy="98" r="10" fill="#3E2723"/>
-      <circle cx="124" cy="98" r="10" fill="#3E2723"/>
-      <circle cx="79" cy="94" r="3" fill="#fff"/>
-      <circle cx="127" cy="94" r="3" fill="#fff"/>
-      <rect class="eyelid-l" x="60" y="80" width="32" height="32" rx="16" fill="#3E2723"/>
-      <rect class="eyelid-r" x="108" y="80" width="32" height="32" rx="16" fill="#3E2723"/>
+      <g class="pupil" data-mx="9" data-my="9">
+        <circle cx="76" cy="98" r="10" fill="#3E2723"/>
+        <circle cx="124" cy="98" r="10" fill="#3E2723"/>
+        <circle cx="79" cy="94" r="3" fill="#fff"/>
+        <circle cx="127" cy="94" r="3" fill="#fff"/>
+      </g>
       <rect class="brow-l" x="62" y="68" width="26" height="6" rx="3" fill="#3E2723"/>
       <rect class="brow-r" x="112" y="68" width="26" height="6" rx="3" fill="#3E2723"/>
       <path d="M94 108 L106 108 L100 120 Z" fill="#E2572B"/>
@@ -1026,6 +1064,37 @@
     document.getElementById('owlHome').innerHTML = svg;
     document.getElementById('owlCelebrate').innerHTML = svg;
     setOwlState('idle');
+    applyLook();
+  }
+
+  /* ===== OJOS QUE SIGUEN EL CURSOR ===== */
+  const look = { x: null, y: null, raf: 0 };
+  function lookAt(x, y){
+    document.querySelectorAll('.owl-svg').forEach((svg) => {
+      const g = svg.querySelector('.pupil');
+      if (!g) return;
+      const r = svg.getBoundingClientRect();
+      if (!r.width) return;
+      const cx = r.left + r.width / 2, cy = r.top + r.height * 0.5;
+      const dx = x - cx, dy = y - cy;
+      const dist = Math.hypot(dx, dy) || 1;
+      const f = Math.min(1, dist / 120);
+      g.style.transform = `translate(${(dx / dist) * Number(g.dataset.mx) * f}px, ${(dy / dist) * Number(g.dataset.my) * f}px)`;
+    });
+  }
+  function applyLook(){ if (look.x != null) lookAt(look.x, look.y); }
+  document.addEventListener('mousemove', (e) => {
+    look.x = e.clientX; look.y = e.clientY;
+    if (look.raf) return;
+    look.raf = requestAnimationFrame(() => { look.raf = 0; lookAt(look.x, look.y); });
+  });
+  if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+    setInterval(() => {
+      const a = Math.random() * Math.PI * 2, k = Math.random();
+      document.querySelectorAll('.owl-svg .pupil').forEach((g) => {
+        g.style.transform = `translate(${Math.cos(a) * k * Number(g.dataset.mx)}px, ${Math.sin(a) * k * Number(g.dataset.my)}px)`;
+      });
+    }, 2400);
   }
 
   function setOwlState(mode){
@@ -1154,8 +1223,25 @@
   });
 
   /* ===== TIENDA: CATÁLOGO ===== */
+  const allergenLabel = { gluten: 'Gluten', huevo: 'Huevo', mani: 'Maní', frutossecos: 'Frutos secos', lacteos: 'Lácteos', soya: 'Soya' };
+  const allergenRules = {
+    gluten: /trigo|avena|cebada|centeno|integral|granola/i,
+    huevo: /huevo|clara de/i,
+    mani: /maní/i,
+    frutossecos: /nueces|nuez|almendra|castaña|pistacho|avellana/i,
+    lacteos: /leche|yogur|queso|crema|mantequilla(?! de maní)/i,
+    soya: /soya|soja/i
+  };
+  function detectAllergens(list){
+    return Object.keys(allergenRules).filter((k) => (list || []).some((i) => allergenRules[k].test(i)));
+  }
+  function allergenHits(p){ return (p.allergens || []).filter((a) => state.allergies.includes(a)); }
+  function allergenNames(arr){ return arr.map((a) => allergenLabel[a]).join(', '); }
+  function ingHits(name){ return Object.keys(allergenRules).filter((k) => state.allergies.includes(k) && allergenRules[k].test(name)); }
+
   /* fit = puntos según las respuestas del onboarding:
-     anemia | ganar, mantener, bajar | manana, tarde, noche | baja, normal, alta */
+     anemia | ganar, mantener, bajar | manana, tarde, noche | baja, normal, alta
+     Los alérgenos se detectan solos a partir de los ingredientes. */
   const storeProducts = [
     /* --- LAS DOS GALLETAS PRINCIPALES (siempre en la tienda) --- */
     {
@@ -1169,8 +1255,12 @@
         ['🍋','El limón suma vitamina C, que ayuda a absorber mejor el hierro.'],
         ['🌰','Las semillas y el cacao aportan energía, fibra y minerales como magnesio y zinc.']
       ],
+      variants: [
+        { id: 'pack', label: 'Paquete pequeño', desc: '2 galletas', price: 3.00 },
+        { id: 'box', label: 'Caja', desc: '8 galletas', price: 12.00 }
+      ],
       fit: { anemia: 6, ganar: 2, mantener: 1, baja: 2, tarde: 1 },
-      price: 13.90, rating: 4.9, reviews: 402, sales: 2380, stock: 80
+      rating: 4.9, reviews: 402, sales: 2380, stock: 80
     },
     {
       id: 'vegana', main: true, cat: 'galletas', emoji: '🌾',
@@ -1183,8 +1273,12 @@
         ['🌱','La chía suma omega-3 de origen vegetal y más fibra.'],
         ['🥣','Los cereales y semillas la hacen una opción liviana para cualquier momento del día.']
       ],
+      variants: [
+        { id: 'pack', label: 'Paquete', desc: '3 galletas', price: 3.00 },
+        { id: 'box', label: 'Caja', desc: '9 galletas', price: 9.00 }
+      ],
       fit: { mantener: 3, bajar: 2, ganar: 1, manana: 2, normal: 2, alta: 1 },
-      price: 11.90, rating: 4.8, reviews: 355, sales: 1960, stock: 75
+      rating: 4.8, reviews: 355, sales: 1960, stock: 75
     },
 
     /* --- GALLETAS PERSONALIZADAS (aparecen según las respuestas) --- */
@@ -1220,10 +1314,10 @@
     },
     {
       id: 'lentejaCamu', cat: 'galletas', emoji: '🌰',
-      name: 'Galleta de Lenteja y Camu Camu', sub: 'Hierro vegetal + vitamina C',
+      name: 'Galleta de Lenteja y Camu Camu', sub: 'Hierro vegetal + vitamina C · Sin gluten',
       desc: 'Combina lenteja y camu camu para apoyar tu hierro sin carne.',
-      tags: ['Hierro vegetal','Vitamina C'],
-      ingredients: ['Harina de lenteja','Harina de trigo fortificada','Camu camu en polvo','Cacao','Azúcar rubia','Manteca vegetal','Polvo de hornear','Vainilla'],
+      tags: ['Hierro vegetal','Vitamina C','Sin gluten'],
+      ingredients: ['Harina de lenteja','Harina de arroz','Camu camu en polvo','Cacao','Azúcar rubia','Manteca vegetal','Polvo de hornear sin gluten','Vainilla'],
       why: [['🫘','La lenteja aporta hierro vegetal y el camu camu, vitamina C para absorberlo mejor.']],
       fit: { anemia: 4, mantener: 1, normal: 1, tarde: 1 },
       price: 11.50, rating: 4.6, reviews: 143, sales: 610, stock: 50
@@ -1298,18 +1392,67 @@
       fit: { alta: 3, manana: 1, ganar: 1 },
       price: 11.00, rating: 4.7, reviews: 101, sales: 450, stock: 46
     },
+    /* --- GALLETAS PARA ALÉRGICOS --- */
+    {
+      id: 'sinGlutenQuinua', cat: 'galletas', emoji: '🍪',
+      name: 'Galleta Sin Gluten de Quinua y Plátano', sub: 'Sin gluten · Sin huevo',
+      desc: 'Para quienes evitan gluten y huevo: quinua, arroz y plátano.',
+      tags: ['Sin gluten','Sin huevo'],
+      ingredients: ['Harina de quinua','Harina de arroz','Plátano maduro','Manteca vegetal','Miel','Canela','Polvo de hornear sin gluten'],
+      why: [['🌽','La harina de quinua y la de arroz reemplazan al trigo, y el plátano da dulzor natural.']],
+      fit: { mantener: 2, ganar: 1, manana: 1, normal: 1, baja: 1 },
+      price: 11.80, rating: 4.6, reviews: 88, sales: 360, stock: 40
+    },
+    {
+      id: 'camoteCacao', cat: 'galletas', emoji: '🍠',
+      name: 'Galleta Sin Huevo de Camote y Cacao', sub: 'Sin huevo',
+      desc: 'Camote y cacao, con linaza en lugar de huevo.',
+      tags: ['Sin huevo','Cacao'],
+      ingredients: ['Camote','Cacao','Harina de trigo fortificada','Manteca vegetal','Azúcar rubia','Linaza molida','Polvo de hornear','Vainilla'],
+      why: [['🍠','La linaza molida cumple el papel del huevo y suma fibra y omega-3.']],
+      fit: { tarde: 2, mantener: 1, normal: 1, baja: 1 },
+      price: 10.40, rating: 4.5, reviews: 74, sales: 310, stock: 42
+    },
+    {
+      id: 'cocoChia', cat: 'galletas', emoji: '🥥',
+      name: 'Galleta de Coco y Chía', sub: 'Sin gluten · Sin huevo',
+      desc: 'Liviana y crocante, con coco y chía.',
+      tags: ['Sin gluten','Sin huevo','Chía'],
+      ingredients: ['Coco rallado','Semillas de chía','Harina de arroz','Miel','Manteca vegetal','Vainilla','Polvo de hornear sin gluten'],
+      why: [['🥥','El coco da sabor y la chía suma fibra y omega-3, sin usar trigo ni huevo.']],
+      fit: { bajar: 2, noche: 1, alta: 1, mantener: 1 },
+      price: 11.30, rating: 4.4, reviews: 69, sales: 280, stock: 38
+    },
 
     /* --- BARRAS --- */
-    { id: 'barraQuinua', cat: 'barras', emoji: '🌾', name: 'Barra de Quinua & Miel', desc: 'Energía sostenida antes de entrenar o estudiar.', tags: ['Fibra','Energía'], price: 6.50, rating: 4.9, reviews: 410, sales: 2210, stock: 80 },
-    { id: 'barraMaca', cat: 'barras', emoji: '⚡', name: 'Barra Proteica de Maca', desc: 'Refuerzo energético andino con proteína vegetal.', tags: ['Proteína','Maca'], price: 7.20, rating: 4.5, reviews: 175, sales: 860, stock: 48 },
-    { id: 'barraCacao', cat: 'barras', emoji: '🍫', name: 'Barra Frutos Secos & Cacao', desc: 'Snack denso en calorías buenas, ideal a media tarde.', tags: ['Frutos secos','Cacao'], price: 7.90, rating: 4.4, reviews: 132, sales: 640, stock: 36 },
+    { id: 'barraQuinua', cat: 'barras', emoji: '🌾', name: 'Barra de Quinua & Miel', desc: 'Energía sostenida antes de entrenar o estudiar.', tags: ['Fibra','Energía'], ingredients: ['Quinua pop','Avena','Miel','Pasas','Canela'], price: 6.50, rating: 4.9, reviews: 410, sales: 2210, stock: 80 },
+    { id: 'barraMaca', cat: 'barras', emoji: '⚡', name: 'Barra Proteica de Maca', desc: 'Refuerzo energético andino con proteína vegetal.', tags: ['Proteína','Maca'], ingredients: ['Maca','Proteína de soya','Dátiles','Cacao','Avena'], price: 7.20, rating: 4.5, reviews: 175, sales: 860, stock: 48 },
+    { id: 'barraCacao', cat: 'barras', emoji: '🍫', name: 'Barra Frutos Secos & Cacao', desc: 'Snack denso en calorías buenas, ideal a media tarde.', tags: ['Frutos secos','Cacao'], ingredients: ['Nueces','Almendras','Cacao','Dátiles','Miel'], price: 7.90, rating: 4.4, reviews: 132, sales: 640, stock: 36 },
+    { id: 'barraKiwicha', cat: 'barras', emoji: '🌾', name: 'Barra de Kiwicha y Pasas', desc: 'Energía andina, sin gluten ni lácteos.', tags: ['Kiwicha','Sin gluten'], ingredients: ['Kiwicha pop','Pasas','Miel','Coco rallado'], price: 6.90, rating: 4.5, reviews: 84, sales: 390, stock: 52 },
+    { id: 'barraChiaCoco', cat: 'barras', emoji: '🥥', name: 'Barra de Chía y Coco', desc: 'Fibra y grasas buenas en una barra suave.', tags: ['Chía','Coco'], ingredients: ['Semillas de chía','Coco rallado','Dátiles','Cacao nibs'], price: 7.40, rating: 4.4, reviews: 77, sales: 330, stock: 45 },
 
     /* --- BEBIDAS --- */
-    { id: 'jugoCamu', cat: 'bebidas', emoji: '🧃', name: 'Jugo de Camu Camu', desc: 'Vitamina C natural, ayuda a absorber el hierro.', tags: ['Vitamina C'], price: 5.50, rating: 4.7, reviews: 298, sales: 1690, stock: 90 },
-    { id: 'batidoAlgarrobina', cat: 'bebidas', emoji: '🥤', name: 'Batido de Algarrobina', desc: 'Proteína y energía en un batido criollo.', tags: ['Proteína'], price: 8.90, rating: 4.8, reviews: 221, sales: 1240, stock: 58 },
-    { id: 'aguaAndina', cat: 'bebidas', emoji: '💧', name: 'Agua Isotónica Andina', desc: 'Hidratación con electrolitos, sin azúcar añadida.', tags: ['Electrolitos'], price: 4.50, rating: 4.3, reviews: 150, sales: 930, stock: 110 }
+    { id: 'jugoCamu', cat: 'bebidas', emoji: '🧃', name: 'Jugo de Camu Camu', desc: 'Vitamina C natural, ayuda a absorber el hierro.', tags: ['Vitamina C'], ingredients: ['Pulpa de camu camu','Agua','Miel'], price: 5.50, rating: 4.7, reviews: 298, sales: 1690, stock: 90 },
+    { id: 'batidoAlgarrobina', cat: 'bebidas', emoji: '🥤', name: 'Batido de Algarrobina', desc: 'Proteína y energía en un batido criollo.', tags: ['Proteína'], ingredients: ['Leche','Algarrobina','Plátano','Avena'], price: 8.90, rating: 4.8, reviews: 221, sales: 1240, stock: 58 },
+    { id: 'aguaAndina', cat: 'bebidas', emoji: '💧', name: 'Agua Isotónica Andina', desc: 'Hidratación con electrolitos, sin azúcar añadida.', tags: ['Electrolitos'], ingredients: ['Agua','Sales de electrolitos (sodio, potasio, magnesio)','Limón'], price: 4.50, rating: 4.3, reviews: 150, sales: 930, stock: 110 },
+    { id: 'batidoPlatanoAvena', cat: 'bebidas', emoji: '🍌', name: 'Batido de Plátano y Avena', desc: 'Desayuno en vaso: energía y saciedad.', tags: ['Energía','Avena'], ingredients: ['Leche','Plátano','Avena','Canela','Miel'], price: 7.90, rating: 4.6, reviews: 164, sales: 780, stock: 60 },
+    { id: 'chichaLight', cat: 'bebidas', emoji: '🍇', name: 'Chicha Morada Light', desc: 'Refrescante, con antioxidantes del maíz morado y poca azúcar.', tags: ['Antioxidantes','Light'], ingredients: ['Maíz morado','Piña','Manzana','Canela','Clavo de olor','Limón'], price: 5.00, rating: 4.5, reviews: 190, sales: 910, stock: 85 },
+    { id: 'smoothieVerde', cat: 'bebidas', emoji: '🥬', name: 'Smoothie Verde Energético', desc: 'Espinaca, piña y jengibre para un empujón natural.', tags: ['Verde','Vitaminas'], ingredients: ['Espinaca','Piña','Manzana verde','Jengibre','Agua'], price: 7.50, rating: 4.4, reviews: 102, sales: 470, stock: 50 },
+    { id: 'lecheAlmendras', cat: 'bebidas', emoji: '🥛', name: 'Leche de Almendras con Cacao', desc: 'Bebida vegetal cremosa, sin lácteos.', tags: ['Vegetal','Cacao'], ingredients: ['Almendras','Agua','Cacao','Dátiles'], price: 8.50, rating: 4.5, reviews: 93, sales: 420, stock: 44 },
+
+    /* --- SNACKS --- */
+    { id: 'mixAndino', cat: 'snacks', emoji: '🥜', name: 'Mix Andino de Frutos Secos', desc: 'Energía lista para llevar a cualquier lado.', tags: ['Frutos secos','Energía'], ingredients: ['Almendras','Nueces','Maní tostado','Pasas','Arándanos secos'], price: 7.50, rating: 4.6, reviews: 158, sales: 740, stock: 70 },
+    { id: 'chiflesCamote', cat: 'snacks', emoji: '🍠', name: 'Chifles de Camote al Horno', desc: 'Crocantes y horneados, sin freír.', tags: ['Horneado','Camote'], ingredients: ['Camote','Aceite de oliva','Sal'], price: 5.20, rating: 4.3, reviews: 112, sales: 520, stock: 66 },
+    { id: 'granolaQuinua', cat: 'snacks', emoji: '🥣', name: 'Granola de Quinua y Miel', desc: 'Para acompañar yogur, frutas o comer a puñados.', tags: ['Fibra','Granola'], ingredients: ['Avena','Quinua pop','Miel','Pasas','Almendras'], price: 9.50, rating: 4.7, reviews: 143, sales: 690, stock: 54 },
+    { id: 'hojuelasKiwicha', cat: 'snacks', emoji: '🌾', name: 'Hojuelas de Kiwicha con Pasas', desc: 'Grano andino inflado, listo para comer.', tags: ['Kiwicha','Sin gluten'], ingredients: ['Kiwicha pop','Pasas','Miel'], price: 6.80, rating: 4.4, reviews: 71, sales: 300, stock: 48 },
+    { id: 'yogurGranola', cat: 'snacks', emoji: '🥛', name: 'Vasito de Yogur con Granola', desc: 'Cremoso, con granola crocante y fruta fresca.', tags: ['Calcio','Granola'], ingredients: ['Yogur natural','Granola de avena','Frutas frescas','Miel'], price: 8.20, rating: 4.6, reviews: 126, sales: 610, stock: 40 }
   ];
-  storeProducts.forEach((p) => { p.maxStock = p.stock; });
+  storeProducts.forEach((p) => {
+    p.maxStock = p.stock;
+    p.allergens = detectAllergens(p.ingredients);
+    if (p.variants) p.price = Math.min(...p.variants.map((v) => v.price));
+  });
+  const getP = (id) => storeProducts.find((x) => x.id === id);
   const bestSellerId = storeProducts.reduce((a, b) => (b.sales > a.sales ? b : a)).id;
   let storeCat = 'all';
 
@@ -1333,6 +1476,51 @@
     alta: 'Con tanta energía, te acompaña para rendir.'
   };
 
+  /* ===== ALERGIAS (onboarding) ===== */
+  document.getElementById('allergyGrid').addEventListener('click', (e) => {
+    const b = e.target.closest('.al-chip');
+    if (!b) return;
+    const k = b.dataset.al;
+    const on = !b.classList.contains('on');
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on);
+    state.allergies = on ? Array.from(new Set(state.allergies.concat(k))) : state.allergies.filter((x) => x !== k);
+  });
+
+  /* ===== VARIANTES (paquete / caja) ===== */
+  function variantsOf(p){ return p.variants || [{ id: 'u', label: '', desc: '', price: p.price }]; }
+  function selVariantId(p){ return state.selVariant[p.id] || variantsOf(p)[0].id; }
+  function selVariant(p){ const vs = variantsOf(p); return vs.find((v) => v.id === selVariantId(p)) || vs[0]; }
+  function cartKey(id, vid){ return id + '|' + vid; }
+  function parseKey(key){ const i = key.indexOf('|'); return [key.slice(0, i), key.slice(i + 1)]; }
+
+  function variantRowMarkup(p){
+    const vs = variantsOf(p);
+    if (vs.length < 2) return '';
+    const cur = selVariantId(p);
+    return `<div class="var-row" data-id="${p.id}">${vs.map((v) =>
+      `<button type="button" class="var-chip${v.id === cur ? ' active' : ''}" data-vid="${v.id}"><b>${v.label}</b><small>${v.desc} · S/ ${v.price.toFixed(2)}</small></button>`).join('')}</div>`;
+  }
+
+  function selectVariant(id, vid){
+    const p = getP(id);
+    if (!p) return;
+    state.selVariant[id] = vid;
+    document.querySelectorAll(`.var-row[data-id="${id}"]`).forEach((row) => {
+      row.querySelectorAll('.var-chip').forEach((c) => c.classList.toggle('active', c.dataset.vid === vid));
+    });
+    document.querySelectorAll(`.price-for[data-id="${id}"]`).forEach((el) => { el.textContent = 'S/ ' + selVariant(p).price.toFixed(2); });
+    refreshDetailButton();
+  }
+
+  function bindVariantChips(root){
+    root.querySelectorAll('.var-chip').forEach((b) => b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectVariant(b.closest('.var-row').dataset.id, b.dataset.vid);
+    }));
+  }
+
+  /* ===== PERSONALIZACIÓN ===== */
   function scoreOf(p){
     const f = p.fit || {};
     let s = 0;
@@ -1344,13 +1532,14 @@
   }
 
   function computePersonalIds(){
-    const extras = storeProducts.filter((p) => p.cat === 'galletas' && !p.main);
+    const extras = storeProducts.filter((p) => p.cat === 'galletas' && !p.main && !allergenHits(p).length);
     extras.sort((a, b) => (scoreOf(b) - scoreOf(a)) || (b.sales - a.sales));
     state.personalIds = extras.slice(0, 4).map((p) => p.id);
   }
 
   function recommendedProductId(){
-    const cookies = storeProducts.filter((p) => p.cat === 'galletas');
+    let cookies = storeProducts.filter((p) => p.cat === 'galletas' && !allergenHits(p).length);
+    if (!cookies.length) cookies = storeProducts.filter((p) => p.cat === 'galletas');
     let best = cookies[0], bestScore = -1;
     cookies.forEach((p) => { const s = scoreOf(p); if (s > bestScore) { best = p; bestScore = s; } });
     return best.id;
@@ -1363,6 +1552,7 @@
     if (state.goal && f[state.goal]) out.push(goalText[state.goal]);
     if (state.routine && f[state.routine]) out.push(routineText[state.routine]);
     if (state.energy && f[state.energy]) out.push(energyText[state.energy]);
+    if (state.allergies.length && p.cat === 'galletas' && !allergenHits(p).length) out.push('No contiene los alérgenos que marcaste (' + allergenNames(state.allergies) + ').');
     return out;
   }
 
@@ -1402,13 +1592,12 @@
   function renderStoreProfile(){
     const wrap = document.getElementById('storeProfile');
     const chips = [];
-    if (state.goal) chips.push('🎯 ' + goalLabel[state.goal]);
-    if (state.routine) chips.push('⏰ ' + routineLabel[state.routine]);
-    if (state.energy) chips.push('⚡ ' + energyLabel[state.energy]);
-    if (state.anemia) chips.push('🩸 Anemia');
-    wrap.innerHTML = chips.length
-      ? chips.map((c, i) => `<span class="chip" style="animation-delay:${i * 70}ms;">${c}</span>`).join('')
-      : '';
+    if (state.goal) chips.push('<span class="chip">🎯 ' + goalLabel[state.goal] + '</span>');
+    if (state.routine) chips.push('<span class="chip">⏰ ' + routineLabel[state.routine] + '</span>');
+    if (state.energy) chips.push('<span class="chip">⚡ ' + energyLabel[state.energy] + '</span>');
+    if (state.anemia) chips.push('<span class="chip">🩸 Anemia</span>');
+    if (state.allergies.length) chips.push('<span class="chip warn">🚫 Alergia: ' + allergenNames(state.allergies) + '</span>');
+    wrap.innerHTML = chips.map((c, i) => c.replace('<span class="chip', `<span style="animation-delay:${i * 70}ms;" class="chip`)).join('');
   }
 
   function starsMarkup(rating){
@@ -1417,13 +1606,14 @@
   }
 
   function productCardMarkup(p, idx, recoId){
+    const hits = allergenHits(p);
     const isBest = p.id === bestSellerId;
-    const isReco = p.id === recoId;
+    const isReco = p.id === recoId && !hits.length;
     const soldOut = p.stock <= 0;
     const pct = Math.max(0, Math.min(100, (p.stock / p.maxStock) * 100));
-    const isCookie = p.cat === 'galletas';
+    const hasDetail = !!p.ingredients;
     return `
-      <div class="card store-card${isReco ? ' is-reco' : ''}${p.main ? ' is-main' : ''}" style="animation-delay:${idx * 60}ms;" data-cat="${p.cat}" data-id="${p.id}" role="button" tabindex="0" aria-label="Ver detalle de ${p.name}">
+      <div class="card store-card${isReco ? ' is-reco' : ''}${p.main ? ' is-main' : ''}${hits.length ? ' has-allergy' : ''}" style="animation-delay:${idx * 60}ms;" data-cat="${p.cat}" data-id="${p.id}" role="button" tabindex="0" aria-label="Ver detalle de ${p.name}">
         <div class="store-card-top">
           <div class="store-icon">${p.emoji}</div>
           <div class="store-badges">
@@ -1434,20 +1624,22 @@
         </div>
         <h3>${p.name}</h3>
         ${p.sub ? `<p class="store-sub">${p.sub}</p>` : ''}
+        ${hits.length ? `<div class="allergy-alert">⚠️ Eres alérgico a: ${allergenNames(hits)}</div>` : ''}
         <p class="store-desc">${p.desc}</p>
         <div class="store-meta">${p.tags.map((t) => `<span class="chip">${t}</span>`).join('')}</div>
         <div class="store-rating-row">
           ${starsMarkup(p.rating)}
           <span class="rating-num">${p.rating.toFixed(1)}</span>
           <span class="rating-count">(${p.reviews})</span>
-          ${isCookie ? '<span class="more-hint">Ver ingredientes ›</span>' : ''}
+          ${hasDetail ? '<span class="more-hint">Ver ingredientes ›</span>' : ''}
         </div>
+        ${variantRowMarkup(p)}
         <div class="store-stock">
           <div class="bar-track"><div class="bar-fill v store-stock-fill" data-pct="${pct}" style="width:0%;"></div></div>
           <span class="stock-label${p.stock <= 5 ? ' low' : ''}">${soldOut ? 'Agotado' : p.stock + ' disp.'}</span>
         </div>
         <div class="store-bottom">
-          <span class="store-price">S/ ${p.price.toFixed(2)}</span>
+          <span class="store-price price-for" data-id="${p.id}">S/ ${selVariant(p).price.toFixed(2)}</span>
           <button class="btn-add${soldOut ? ' sold-out' : ''}" data-id="${p.id}" data-name="${p.name}" ${soldOut ? 'disabled' : ''}>${soldOut ? 'Agotado' : '+ Agregar'}</button>
         </div>
       </div>`;
@@ -1456,26 +1648,27 @@
   function renderStoreGrid(){
     const grid = document.getElementById('storeGrid');
     const recoId = recommendedProductId();
-    const byId = (id) => storeProducts.find((p) => p.id === id);
     if (!state.personalIds.length) computePersonalIds();
 
     const mains = storeProducts.filter((p) => p.main);
-    const personal = state.personalIds.map(byId);
+    const personal = state.personalIds.map(getP);
     const others = storeProducts.filter((p) => p.cat !== 'galletas');
 
     let idx = 0;
     const section = (title, sub, list) => {
       list = list.filter((p) => storeCat === 'all' || p.cat === storeCat);
       if (!list.length) return '';
-      list = list.slice().sort((a, b) => (b.id === recoId) - (a.id === recoId));
+      list = list.slice().sort((a, b) =>
+        ((b.id === recoId) - (a.id === recoId)) ||
+        ((allergenHits(a).length > 0) - (allergenHits(b).length > 0)));
       const head = `<div class="store-section" style="animation-delay:${idx * 60}ms;"><b>${title}</b><span>${sub}</span></div>`;
       return head + list.map((p) => productCardMarkup(p, idx++, recoId)).join('');
     };
 
     grid.innerHTML =
-      section('⭐ Las principales', 'Siempre en NUTRI BIT', mains) +
-      section('✨ Seleccionadas para ti', 'Según tus respuestas', personal) +
-      section('⚡ Más para tu racha', 'Barras y bebidas', others);
+      section('⭐ Las principales', 'Siempre en NUTRI VIT', mains) +
+      section('✨ Seleccionadas para ti', state.allergies.length ? 'Sin tus alérgenos ✓' : 'Según tus respuestas', personal) +
+      section('🛍️ Más para tu racha', 'Barras, bebidas y snacks', others);
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
       grid.querySelectorAll('.stars-fg').forEach((el) => { el.style.width = el.dataset.pct + '%'; });
@@ -1483,14 +1676,15 @@
     }));
 
     grid.querySelectorAll('.btn-add').forEach((btn) => btn.addEventListener('click', () => addToCart(btn)));
+    bindVariantChips(grid);
     grid.querySelectorAll('.store-card').forEach((card) => {
-      card.addEventListener('click', (e) => { if (e.target.closest('.btn-add')) return; openDetail(card.dataset.id); });
-      card.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('.btn-add')) { e.preventDefault(); openDetail(card.dataset.id); } });
+      card.addEventListener('click', (e) => { if (e.target.closest('.btn-add, .var-row')) return; openDetail(card.dataset.id); });
+      card.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('.btn-add, .var-row')) { e.preventDefault(); openDetail(card.dataset.id); } });
     });
   }
 
   function updateProductCardDOM(id){
-    const p = storeProducts.find((x) => x.id === id);
+    const p = getP(id);
     if (!p) return;
     const card = document.querySelector(`.store-card[data-id="${id}"]`);
     if (card) {
@@ -1524,13 +1718,13 @@
   /* ===== DETALLE DE PRODUCTO ===== */
   function detailButtonLabel(p){
     if (p.stock <= 0) return 'Agotado';
-    const q = state.cart[p.id] || 0;
+    const q = state.cart[cartKey(p.id, selVariantId(p))] || 0;
     return q ? `+ Agregar (${q} en carrito)` : '+ Agregar al carrito';
   }
 
   function refreshDetailButton(){
     if (!state.detailId) return;
-    const p = storeProducts.find((x) => x.id === state.detailId);
+    const p = getP(state.detailId);
     const btn = document.getElementById('detailAddBtn');
     if (!p || !btn) return;
     btn.disabled = p.stock <= 0;
@@ -1539,11 +1733,13 @@
   }
 
   function openDetail(id){
-    const p = storeProducts.find((x) => x.id === id);
+    const p = getP(id);
     if (!p) return;
     state.detailId = id;
     const recoId = recommendedProductId();
+    const hits = allergenHits(p);
     const personal = personalReasons(p);
+    const fem = p.cat === 'galletas';
 
     const staticWhy = (p.why || []).map(([ic, tx], i) =>
       `<li style="animation-delay:${200 + i * 90}ms;"><span class="wi">${ic}</span><span>${tx}</span></li>`).join('');
@@ -1551,25 +1747,30 @@
     const personalWhy = personal.map((tx, i) =>
       `<li class="personal" style="animation-delay:${200 + (baseIdx + i) * 90}ms;"><span class="wi">✨</span><span>${tx}</span></li>`).join('');
     const mainWhy = p.main
-      ? `<li style="animation-delay:${200 + (baseIdx + personal.length) * 90}ms;"><span class="wi">⭐</span><span>Es una de las dos galletas principales de NUTRI BIT, así que siempre está en la tienda.</span></li>`
+      ? `<li style="animation-delay:${200 + (baseIdx + personal.length) * 90}ms;"><span class="wi">⭐</span><span>Es una de las dos galletas principales de NUTRI VIT, así que siempre está en la tienda.</span></li>`
       : '';
     const fallbackWhy = (!p.why && !personal.length)
-      ? `<li style="animation-delay:200ms;"><span class="wi">🔥</span><span>${p.desc} Úsala como apoyo para tu racha diaria.</span></li>` : '';
+      ? `<li style="animation-delay:200ms;"><span class="wi">🔥</span><span>${p.desc} Úsalo como apoyo para tu racha diaria.</span></li>` : '';
 
     const ingredientsBlock = p.ingredients ? `
-      <h3 class="detail-h">🧾 ¿De qué está hecha?</h3>
-      <div class="ing-grid">${p.ingredients.map((it, i) => `<span class="ing" style="animation-delay:${120 + i * 45}ms;">${it}</span>`).join('')}</div>` : '';
+      <h3 class="detail-h">🧾 ¿De qué está ${fem ? 'hecha' : 'hecho'}?</h3>
+      <div class="ing-grid">${p.ingredients.map((it, i) => {
+        const bad = ingHits(it).length;
+        return `<span class="ing${bad ? ' alert' : ''}" style="animation-delay:${120 + i * 45}ms;">${bad ? '⚠️ ' : ''}${it}</span>`;
+      }).join('')}</div>
+      ${p.allergens.length ? `<p class="detail-note" style="text-align:left;">Contiene: ${allergenNames(p.allergens)}</p>` : ''}` : '';
 
     document.getElementById('detailBody').innerHTML = `
       <div class="detail-hero">
         <div class="detail-emoji">${p.emoji}</div>
         <div>
           ${p.main ? '<span class="s-badge main">⭐ Galleta principal</span>' : ''}
-          ${p.id === recoId ? '<span class="s-badge reco">✨ Para ti</span>' : ''}
+          ${p.id === recoId && !hits.length ? '<span class="s-badge reco">✨ Para ti</span>' : ''}
           <h2>${p.name}</h2>
           ${p.sub ? `<p class="detail-sub">${p.sub}</p>` : ''}
         </div>
       </div>
+      ${hits.length ? `<div class="alert-box">⚠️ <b>Ojo:</b> contiene ${allergenNames(hits)} y marcaste alergia a esto. Mejor evita este producto.</div>` : ''}
       <div class="store-rating-row" style="margin:0;">
         ${starsMarkup(p.rating)}
         <span class="rating-num">${p.rating.toFixed(1)}</span>
@@ -1577,16 +1778,18 @@
       </div>
       <p class="detail-desc">${p.desc}</p>
       ${ingredientsBlock}
-      <h3 class="detail-h">💡 ¿Por qué te la recomendamos?</h3>
+      <h3 class="detail-h">💡 ¿Por qué te ${fem ? 'la' : 'lo'} recomendamos?</h3>
       <ul class="why-list">${personalWhy}${staticWhy}${mainWhy}${fallbackWhy}</ul>
       <p class="detail-note">Simulación de prototipo. No sustituye atención médica ni una dieta indicada por un profesional.</p>
+      ${variantRowMarkup(p)}
       <div class="detail-buy">
-        <span class="store-price">S/ ${p.price.toFixed(2)}</span>
+        <span class="store-price price-for" data-id="${p.id}">S/ ${selVariant(p).price.toFixed(2)}</span>
         <button class="btn-add" id="detailAddBtn" data-id="${p.id}" data-name="${p.name}">${detailButtonLabel(p)}</button>
       </div>`;
 
     const addBtn = document.getElementById('detailAddBtn');
     addBtn.addEventListener('click', () => addToCart(addBtn));
+    bindVariantChips(document.getElementById('detailBody'));
     refreshDetailButton();
     document.getElementById('detailSheet').scrollTop = 0;
     document.getElementById('detailOverlay').classList.add('show');
@@ -1636,11 +1839,13 @@
   function addToCart(btn){
     if (btn.disabled) return;
     const id = btn.dataset.id;
-    const p = storeProducts.find((x) => x.id === id);
+    const p = getP(id);
     if (!p || p.stock <= 0) return;
+    const v = selVariant(p);
+    const key = cartKey(id, v.id);
 
     p.stock -= 1;
-    state.cart[id] = (state.cart[id] || 0) + 1;
+    state.cart[key] = (state.cart[key] || 0) + 1;
 
     updateProductCardDOM(id);
     updateCartBadge();
@@ -1648,67 +1853,76 @@
     cartEl.classList.remove('bump'); void cartEl.offsetWidth; cartEl.classList.add('bump');
     btn.classList.remove('bump'); void btn.offsetWidth; btn.classList.add('bump');
     sparkleBurst(btn);
-    flashToast(`Agregaste ${btn.dataset.name} 🛒`);
+    const hits = allergenHits(p);
+    if (hits.length) flashToast(`⚠️ Ojo: ${p.name} contiene ${allergenNames(hits)} (tu alergia)`, 3600);
+    else flashToast(`Agregaste ${p.name}${v.label ? ' (' + v.label.toLowerCase() + ')' : ''} 🛒`);
   }
 
-  function changeCartQty(id, delta){
-    const p = storeProducts.find((x) => x.id === id);
+  function changeCartQty(key, delta){
+    const [id] = parseKey(key);
+    const p = getP(id);
     if (!p) return;
     if (delta > 0) {
       if (p.stock <= 0) return;
       p.stock -= 1;
-      state.cart[id] = (state.cart[id] || 0) + 1;
+      state.cart[key] = (state.cart[key] || 0) + 1;
     } else {
-      const current = state.cart[id] || 0;
+      const current = state.cart[key] || 0;
       if (current <= 0) return;
       p.stock += 1;
       const next = current - 1;
-      if (next <= 0) delete state.cart[id];
-      else state.cart[id] = next;
+      if (next <= 0) delete state.cart[key];
+      else state.cart[key] = next;
     }
     updateProductCardDOM(id);
     updateCartBadge();
     renderCartModal();
   }
 
+  function cartLineName(p, v){ return p.name + (v.label ? ' · ' + v.label : ''); }
+
   function renderCartModal(){
     const wrap = document.getElementById('cartItems');
     const empty = document.getElementById('cartEmpty');
-    const ids = Object.keys(state.cart);
+    const keys = Object.keys(state.cart);
     let total = 0;
 
-    if (!ids.length) {
+    if (!keys.length) {
       wrap.innerHTML = '';
       empty.classList.add('show');
     } else {
       empty.classList.remove('show');
-      wrap.innerHTML = ids.map((id) => {
-        const p = storeProducts.find((x) => x.id === id);
-        const qty = state.cart[id];
-        const lineTotal = p.price * qty;
+      wrap.innerHTML = keys.map((key) => {
+        const [id, vid] = parseKey(key);
+        const p = getP(id);
+        const v = variantsOf(p).find((x) => x.id === vid) || variantsOf(p)[0];
+        const qty = state.cart[key];
+        const lineTotal = v.price * qty;
         total += lineTotal;
+        const hits = allergenHits(p);
         return `
-          <div class="cart-item" data-id="${id}">
+          <div class="cart-item" data-key="${key}">
             <div class="ci-icon">${p.emoji}</div>
             <div class="ci-info">
-              <b>${p.name}</b>
-              <span>S/ ${p.price.toFixed(2)} c/u · S/ ${lineTotal.toFixed(2)}</span>
+              <b>${cartLineName(p, v)}</b>
+              <span>${v.desc ? v.desc + ' · ' : ''}S/ ${v.price.toFixed(2)} c/u · S/ ${lineTotal.toFixed(2)}</span>
+              ${hits.length ? `<span style="display:block;color:#c0262d;font-weight:700;">⚠️ Contiene: ${allergenNames(hits)}</span>` : ''}
             </div>
             <div class="qty-stepper">
-              <button class="qty-minus" data-id="${id}" aria-label="Quitar uno">–</button>
+              <button class="qty-minus" data-key="${key}" aria-label="Quitar uno">–</button>
               <b>${qty}</b>
-              <button class="qty-plus" data-id="${id}" aria-label="Agregar uno">+</button>
+              <button class="qty-plus" data-key="${key}" aria-label="Agregar uno">+</button>
             </div>
           </div>`;
       }).join('');
     }
 
     document.getElementById('cartTotal').textContent = 'S/ ' + total.toFixed(2);
-    document.getElementById('cartPayBtn').disabled = !ids.length;
-    document.getElementById('cartClearBtn').style.display = ids.length ? 'block' : 'none';
+    document.getElementById('cartPayBtn').disabled = !keys.length;
+    document.getElementById('cartClearBtn').style.display = keys.length ? 'block' : 'none';
 
-    wrap.querySelectorAll('.qty-plus').forEach((b) => b.addEventListener('click', () => changeCartQty(b.dataset.id, 1)));
-    wrap.querySelectorAll('.qty-minus').forEach((b) => b.addEventListener('click', () => changeCartQty(b.dataset.id, -1)));
+    wrap.querySelectorAll('.qty-plus').forEach((b) => b.addEventListener('click', () => changeCartQty(b.dataset.key, 1)));
+    wrap.querySelectorAll('.qty-minus').forEach((b) => b.addEventListener('click', () => changeCartQty(b.dataset.key, -1)));
   }
 
   function openCart(){ closeDetail(); renderCartModal(); document.getElementById('cartOverlay').classList.add('show'); }
@@ -1718,9 +1932,10 @@
   document.getElementById('cartOverlay').addEventListener('click', (e) => { if (e.target.id === 'cartOverlay') closeCart(); });
 
   document.getElementById('cartClearBtn').addEventListener('click', () => {
-    Object.keys(state.cart).forEach((id) => {
-      const p = storeProducts.find((x) => x.id === id);
-      if (p) p.stock += state.cart[id];
+    Object.keys(state.cart).forEach((key) => {
+      const [id] = parseKey(key);
+      const p = getP(id);
+      if (p) p.stock += state.cart[key];
       updateProductCardDOM(id);
     });
     state.cart = {};
@@ -1729,11 +1944,13 @@
   });
 
   document.getElementById('cartPayBtn').addEventListener('click', () => {
-    const ids = Object.keys(state.cart);
-    if (!ids.length) return;
-    const items = ids.map((id) => {
-      const p = storeProducts.find((x) => x.id === id);
-      return { name: p.name, emoji: p.emoji, qty: state.cart[id], price: p.price };
+    const keys = Object.keys(state.cart);
+    if (!keys.length) return;
+    const items = keys.map((key) => {
+      const [id, vid] = parseKey(key);
+      const p = getP(id);
+      const v = variantsOf(p).find((x) => x.id === vid) || variantsOf(p)[0];
+      return { name: cartLineName(p, v), emoji: p.emoji, qty: state.cart[key], price: v.price };
     });
     const total = items.reduce((s, it) => s + it.price * it.qty, 0);
     const d = effectiveToday();
@@ -1744,9 +1961,11 @@
     flashToast(`¡Compra realizada! S/ ${total.toFixed(2)} 🎉`, 2600);
     miniConfetti(document.getElementById('screen-products'));
     renderPurchaseHistory();
+    refreshDetailButton();
   });
 
-  /* ===== RACHA ===== */
+  
+/* ===== RACHA ===== */
   function computeCurrentStreak(){
     let streak = 0;
     let cursor = effectiveToday();
@@ -2092,7 +2311,7 @@
   const toast = document.getElementById('toast');
   const toastMsg = document.getElementById('toastMsg');
   const reminderMessages = [
-    'Te olvidaste de tu galleta NUTRI BIT hoy 🍪',
+    'Te olvidaste de tu galleta NUTRI VIT hoy 🍪',
     'Te olvidaste de comer mejor hoy 🍽️',
     'Tu racha está en riesgo, no la rompas 🔥',
     'Tu mascota te está esperando...'
@@ -2176,7 +2395,7 @@
   });
 
   function triggerCelebration(){
-    document.getElementById('celebrateMsg').textContent = `${state.petName} está orgulloso de ti. Llegaste a ${state.weightGoal || 'tu meta'} kg cuidándote con NUTRI BIT.`;
+    document.getElementById('celebrateMsg').textContent = `${state.petName} está orgulloso de ti. Llegaste a ${state.weightGoal || 'tu meta'} kg cuidándote con NUTRI VIT.`;
     document.getElementById('celebrateOverlay').classList.add('show');
     setOwlState('celebrate');
     bigConfetti(document.getElementById('celebrateOverlay'));
